@@ -7,8 +7,8 @@ Vagrant::Config.run do |config|
 
   config.vm.customize ["modifyvm", :id, "--memory", "1024"]
 
-  config.vm.box = "openminds-debian-squeeze-amd64-ruby-2.0.0-p0.box"
-  config.vm.box_url = 'http://mirror.openminds.be/vagrant-boxes/openminds-debian-squeeze-amd64-ruby-2.0.0-p0.box'
+  config.vm.box = "debian-6.0.7-amd64-ruby1.9.3.box"
+  config.vm.box_url = 'http://mirror.openminds.be/vagrant-boxes/debian-6.0.7-amd64-ruby1.9.3.box'
   # config.vm.boot_mode = :gui
   # config.vm.network "33.33.33.10"
   config.vm.forward_port 80, 8080
