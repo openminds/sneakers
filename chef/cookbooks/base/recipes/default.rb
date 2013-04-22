@@ -1,18 +1,27 @@
-#
-# Cookbook Name:: base
-# Recipe:: default
-#
-# Copyright 2013, Openminds BVBA
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-#
+%w[lsb lsb-release tzdata ncurses-term lsof strace snmpd locales vim bsd-mailx mingetty sudo build-essential xfsprogs ssh less psmisc rsync pwgen curl ntpdate ntp sysstat iotop git screen telnet debian-keyring].each do |pkg|
+  package pkg
+end
+
+cookbook_file "/etc/skel/.gemrc" do
+  source "gemrc"
+end
+
+execute "update-tzdata" do
+  command "dpkg-reconfigure -f noninteractive tzdata"
+  action :nothing
+end
+
+file node[:timezone][:tz_file] do
+  owner "root"
+  group "root"
+  mode "00644"
+  content node[:timezone][:zone]
+  notifies :run, "execute[update-tzdata]"
+end
+
+cookbook_file "/etc/mime.types" do
+  source  "mime.types"
+  owner  "root"
+  group  "root"
+  mode  0644
+end
