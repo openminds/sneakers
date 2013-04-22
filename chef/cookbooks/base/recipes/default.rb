@@ -1,3 +1,23 @@
+include_recipe "apt"
+
+file "/etc/apt/sources.list" do
+  content "# Managed by chef"
+end
+
+apt_repository "squeeze_mirror_openminds_be" do
+  uri "http://mirror.openminds.be/debian"
+  distribution "squeeze"
+  components ["main", "contrib", "non-free"]
+  action :add
+end
+
+apt_repository "squeeze_security" do
+  uri "http://security.debian.org"
+  distribution "squeeze/updates"
+  components ["main", "contrib", "non-free"]
+  action :add
+end
+
 %w[lsb lsb-release tzdata ncurses-term lsof strace snmpd locales vim bsd-mailx mingetty sudo build-essential xfsprogs ssh less psmisc rsync pwgen curl ntpdate ntp sysstat iotop git screen telnet debian-keyring].each do |pkg|
   package pkg
 end
