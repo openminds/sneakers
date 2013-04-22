@@ -1,0 +1,11 @@
+/var/log/apache2/*.log /var/log/apache2/*/*log /home/*/apps/*/log/*log /home/*/apps/*/shared/log/*log {
+  weekly
+  missingok
+  rotate 52
+  compress
+  delaycompress
+  notifempty
+  dateext
+  copytruncate
+  create 644
+}
