@@ -3,7 +3,7 @@
 	url = git://github.com/opscode-cookbooks/apt.git
 [submodule "chef/cookbooks/minitest-handler"]
 	path = chef/cookbooks/minitest-handler
-	url = git@github.com:btm/minitest-handler-cookbook.git
+	url = git://github.com/btm/minitest-handler-cookbook.git
 [submodule "chef/cookbooks/chef_handler"]
 	path = chef/cookbooks/chef_handler
-	url = git@github.com:opscode-cookbooks/chef_handler.git
+	url = git://github.com/opscode-cookbooks/chef_handler.git
