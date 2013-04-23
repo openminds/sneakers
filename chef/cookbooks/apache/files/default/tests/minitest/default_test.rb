@@ -9,7 +9,8 @@ class TestApache2 < MiniTest::Chef::TestCase
 
   def test_that_the_packages_are_installed
     %w[libcap2 apache2-mpm-worker libaprutil1-dbd-sqlite3 libaprutil1-dbd-mysql libaprutil1-dbd-odbc libaprutil1-dbd-pgsql libaprutil1-dbd-freetds libaprutil1-ldap libapache2-mod-rpaf apache2-suexec libapache2-mod-fastcgi].each do |pkg|
-      assert system("apt-cache policy #{pkg} | grep Installed | grep -v none")
+      #assert system("apt-cache policy #{pkg} | grep Installed | grep -v none")
+      assert system("dpkg -l | grep #{pkg}")
     end
   end
 
