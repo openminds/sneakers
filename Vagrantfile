@@ -19,7 +19,9 @@ Vagrant::Config.run do |config|
     chef.roles_path = "chef/roles"
 
     chef.add_recipe "base"
+    chef.add_recipe "apache"
+    chef.add_recipe "chef_handler"
+    chef.add_recipe "minitest-handler"
     chef.json.merge!(:base => {:wot => false })
   end
 end
-
