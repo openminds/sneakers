@@ -13,7 +13,7 @@ class TestBase < MiniTest::Chef::TestCase
 
   def test_that_the_packages_are_installed
     %w[lsb lsb-release tzdata ncurses-term lsof strace snmpd locales vim bsd-mailx mingetty sudo build-essential xfsprogs ssh less psmisc rsync pwgen curl ntpdate ntp sysstat iotop git screen telnet debian-keyring].each do |pkg|
-      assert system("apt-cache policy #{pkg} | grep Installed | grep -v none")
+      assert system("dpkg -l | grep #{pkg}")
     end
   end
 end
