@@ -1,4 +1,4 @@
-default[:apache][:listen_ports] = [80]
+default[:apache][:listen_ports] = [ 8080 ]
 default[:apache][:timeout] = 300
 default[:apache][:keepalive] = "On"
 default[:apache][:keepaliverequests] = 100
