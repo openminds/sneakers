@@ -13,7 +13,7 @@ Vagrant::Config.run do |config|
   # config.vm.network "33.33.33.10"
   config.vm.forward_port 80, 8090
   config.vm.forward_port 8080, 8091
-  # config.vm.share_folder "v-data", "/vagrant_data", "../data"
+  config.vm.share_folder "apps", "/home/vagrant/apps", "apps"
 
   config.vm.provision :chef_solo do |chef|
     chef.cookbooks_path = "chef/cookbooks"
