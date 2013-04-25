@@ -3,5 +3,5 @@
 .vagrant/*
 chef/.chef/*.pem
 chef/.chef/encrypted_data_bag_secret
-apps/*
+apps/default/*
 
