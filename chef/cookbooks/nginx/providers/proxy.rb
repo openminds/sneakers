@@ -28,6 +28,7 @@ def proxy_resource(exec_action)
       :serveraliases => new_resource.serveraliases,
       :user => new_resource.user
     action :nothing
+    notifies :reload, "service[nginx]"
   end
 
   t.run_action(exec_action)
