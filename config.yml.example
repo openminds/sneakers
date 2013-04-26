@@ -1,0 +1,14 @@
+app1:
+  name: "app1"
+  app_directory: "/Users/name/Developer/boxersapp1"
+  type: "php53"
+  http_port: 8090
+  memory: 1024
+
+app2:
+  name: "app2"
+  app_directory: "/Users/name/Developer/boxersapp2"
+  type: "php54"
+  http_port: 8090
+  memory: 1024
+
