@@ -29,8 +29,6 @@ class TestApache2 < MiniTest::Chef::TestCase
   end
 
   def test_default_page
-    default_page_source = "<html><body><h1>It works!</h1>\n<p>This is the default web page for this server.</p>\n<p>The web server software is running but no content has been added, yet.</p>\n</body></html>\n"
-    source = Net::HTTP.get('127.0.0.1', '/index.html')
-    assert_match(/#{Regexp.quote(default_page_source)}/, source, "the webserver returns the default page")
+    assert Net::HTTP.get('127.0.0.1', '/')
   end
 end
