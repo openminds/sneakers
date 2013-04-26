@@ -1,0 +1,5 @@
+name: "boxerstest"
+app_directory: "/Users/steven/Developer/boxerstest"
+type: "php53"
+http_port: 8090
+
