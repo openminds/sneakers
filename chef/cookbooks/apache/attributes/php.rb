@@ -1,1 +1,1 @@
-default[:php][:version] = "5.3"
+default[:php][:version] = "php53"

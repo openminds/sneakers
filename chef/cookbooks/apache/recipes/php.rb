@@ -1,10 +1,12 @@
+raise "You can not use php recipe in conjunction with apache::passenger" if node.recipes.include? "apache::passenger"
+
 include_recipe "apt"
 
 service "apache2"
 service "php5-fpm"
 
 case node[:php][:version]
-when "5.4"
+when "php54"
   apt_repository "dotdeb-php54" do
     uri "http://packages.dotdeb.org"
     distribution node['lsb']['codename']+"-php54"
@@ -13,7 +15,7 @@ when "5.4"
     action :add
     notifies :run, "execute[apt-update]"
   end
-else
+when "php53"
   apt_repository "dotdeb" do
     uri "http://packages.dotdeb.org"
     distribution node['lsb']['codename']
@@ -21,6 +23,8 @@ else
     key "http://www.dotdeb.org/dotdeb.gpg"
     action :add
   end
+else
+  raise "Unknown PHP version type. Was: #{node[:php][:version]}"
 end
 
 cookbook_file "/etc/apt/preferences.d/dotdeb_php_pinning" do
@@ -69,4 +73,23 @@ end
     mode "0644"
     notifies :reload, "service[php5-fpm]"
   end
+end
+
+cookbook_file "/etc/apache2/sites-available/default" do
+  source "php_vhost.conf"
+  notifies :reload, "service[apache2]"
+end
+
+cookbook_file "/etc/php5/fpm/pool.d/vagrant.conf" do
+  source "fpm-pool.conf"
+  notifies :reload, "service[php5-fpm]"
+end
+
+file "/etc/apache2/conf.d/php-fpm-fcgi-servers" do
+  action :create
+  owner "root"
+  group "root"
+  mode 00644
+  content "FastCGIExternalServer /usr/sbin/php-fpm-vagrant -socket /var/run/php_fpm_vagrant.sock -idle-timeout 600 -pass-header Authorization"
+  notifies :restart, "service[apache2]"
 end

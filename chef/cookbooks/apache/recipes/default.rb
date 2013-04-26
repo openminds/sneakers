@@ -51,6 +51,7 @@ cookbook_file "apache2-logrotate" do
   source "apache2-logrotate"
 end
 
-directory "/var/log/apache2" do
+directory "/home/vagrant/log/apache2/default" do
+  recursive true
   mode 0755
 end

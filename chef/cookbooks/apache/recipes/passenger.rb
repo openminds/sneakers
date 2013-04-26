@@ -1,3 +1,5 @@
+raise "You can not use passenger recipe in conjunction with apache::php" if node.recipes.include? "apache::php"
+
 gem_package "passenger"
 
 %w[libapr1-dev libaprutil1-dev libpq5 libcurl4-openssl-dev libxslt1-dev libxml2-dev apache2-prefork-dev dpatch libaprutil1-dev libapr1-dev libpcre3-dev sharutils].each do |pkg|
