@@ -20,8 +20,12 @@ Vagrant::Config.run do |config|
         chef.add_recipe "base"
         chef.add_recipe "apache"
         chef.add_recipe "nginx"
+        chef.add_recipe "mysql"
         case box['type']
-        when "php53" || "php54"
+        when "php53"
+          chef.add_recipe "apache::php"
+          chef.json.merge!(:php => {:version => box['type'] })
+        when "php54"
           chef.add_recipe "apache::php"
           chef.json.merge!(:php => {:version => box['type'] })
         when "ruby193"
@@ -30,8 +34,8 @@ Vagrant::Config.run do |config|
           raise "Unknown type of server. Needs to be php53, ruby193, ... Please RTFM."
         end
         ## Enable for Chef development:
-        # chef.add_recipe "chef_handler"
-        # chef.add_recipe "minitest-handler"
+        chef.add_recipe "chef_handler"
+        chef.add_recipe "minitest-handler"
       end
     end
   end
