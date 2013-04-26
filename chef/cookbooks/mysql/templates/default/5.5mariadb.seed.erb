@@ -1,0 +1,10 @@
+mariadb-server-5.5        mysql-server/root_password_again        select <%= node['mysql']['mysql_root_pass'] %>
+mariadb-server-5.5        mysql-server/root_password      select <%= node['mysql']['mysql_root_pass'] %>
+mariadb-server-5.5        mysql-server/really_downgrade       boolean false
+mariadb-server-5.5        mysql-server/need_sarge_compat      boolean false
+mariadb-server-5.5        mysql-server/start_on_boot  boolean true
+mariadb-server-5.5        mysql-server/error_setting_password     boolean false
+mariadb-server-5.5        mysql-server/nis_warning    note
+mariadb-server-5.5        mysql-server/postrm_remove_databases        boolean false
+mariadb-server-5.5        mysql-server/password_mismatch  boolean false
+mariadb-server-5.5        mysql-server/need_sarge_compat_done boolean true

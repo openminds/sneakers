@@ -1,0 +1,12 @@
+[mysqld]
+
+innodb_buffer_pool_size=<%= node["mysql"]["innodb_buffer_pool_size"] %>
+innodb_file_per_table = 1
+innodb_flush_log_at_trx_commit = <%= node["mysql"]["innodb_flush_log_at_trx_commit"] %>
+#innodb_flush_neighbor_pages = 0
+#innodb_adaptive_checkpoint = keep_average
+#innodb_doublewrite_file
+#innodb_flush_method=O_DIRECT
+
+#innodb_log_group_home_dir=/innodb
+#innodb_data_home_dir=/innodb
