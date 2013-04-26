@@ -13,7 +13,6 @@ when "php54"
     components ["all"]
     key "http://www.dotdeb.org/dotdeb.gpg"
     action :add
-    notifies :run, "execute[apt-update]"
   end
 when "php53"
   apt_repository "dotdeb" do
