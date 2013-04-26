@@ -1,5 +1,13 @@
-name: "boxerstest"
-app_directory: "/Users/steven/Developer/boxerstest"
-type: "php53"
-http_port: 8090
+joren:
+  name: "boxjoren"
+  app_directory: "/Users/steven/Developer/boxerstest"
+  type: "php53"
+  http_port: 8090
+  memory: 1024
 
+steven:
+  name: "boxsteven"
+  app_directory: "/Users/steven/Developer/boxerstest"
+  type: "php53"
+  http_port: 8091
+  memory: 1024
