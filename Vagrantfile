@@ -4,9 +4,10 @@ boxes_configuration = YAML.load_file('config.yml')
 
 Vagrant::Config.run do |config|
   boxes_configuration.each do |box_config|
+    name = box_config[0]
     box = box_config[1]
-    config.vm.define box['name'] do |node|
-      node.vm.host_name = box['name']
+    config.vm.define name do |node|
+      node.vm.host_name = name
       node.vm.forward_port 80, box['http_port']
       node.vm.customize ["modifyvm", :id, "--memory", "#{box['memory']}"]
       node.vm.box = "debian-6.0.7-amd64-ruby1.9.3.box"
