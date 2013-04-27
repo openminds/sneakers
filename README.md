@@ -33,7 +33,7 @@ soon(-ish): shared varnish support
 
 Clone this repository:
 
-    git clone https://github.com/openminds/boxers
+    git clone git@github.com:..........
 
 Make sure all submodules are up-to-date:
 
@@ -87,4 +87,4 @@ To destroy all VM's:
 
 If you run `vagrant` by itself, help will be displayed showing all available subcommands. In addition to this, you can run any Vagrant command with the `-h` flag to output help about that specific command.
 
-Develop your app in the directory you've given with the `app_directory` parameter. When you surf to `http://localhost:9000` (or nog 9000 but another port you've set with http_port) you should see your website as it would show on an Openminds production server.
+Develop your app in the directory you've given with the `app_directory` parameter. When you surf to `http://localhost:9000` (or not 9000 but another port you've set with http_port) you should see your website as it would show on an Openminds production server.
