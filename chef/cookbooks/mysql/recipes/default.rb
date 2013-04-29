@@ -10,8 +10,6 @@ apt_repository "mariadb" do
   action :add
 end
 
-package "libmariadbclient-dev"
-
 directory "/var/cache/local/preseeding" do
   owner "root"
   group "root"
