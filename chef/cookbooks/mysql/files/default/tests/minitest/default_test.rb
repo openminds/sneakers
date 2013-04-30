@@ -10,7 +10,7 @@ class TestMySQL < MiniTest::Chef::TestCase
   end
 
   def test_that_the_packages_are_installed
-    %w[libmariadbclient-dev mariadb-server-5.5].each do |pkg|
+    %w[mariadb-server-5.5].each do |pkg|
       assert system("dpkg -l | grep #{pkg}")
     end
   end
