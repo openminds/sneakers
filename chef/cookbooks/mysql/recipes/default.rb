@@ -34,3 +34,4 @@ package "mariadb-server-5.5"
 
 include_recipe "mysql::configuration"
 include_recipe "mysql::tuning"
+include_recipe "mysql::databases"
