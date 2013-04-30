@@ -10,7 +10,7 @@ Vagrant::Config.run do |config|
       node.vm.host_name = name
       node.vm.forward_port 80, box['http_port']
       node.vm.forward_port 8080, box['admin_port']
-      node.vm.forward_port 8080, box['mysql_port']
+      node.vm.forward_port 3306, box['mysql_port']
       Vagrant.configure("2") do |config|
         config.vm.provider :virtualbox do |vb|
           vb.customize ["modifyvm", :id, "--memory", "#{box['memory']}"]
