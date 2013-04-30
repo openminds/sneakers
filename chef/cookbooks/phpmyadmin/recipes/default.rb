@@ -2,7 +2,6 @@ latest_version = "3.5.4"
 service "apache2"
 service "php5-fpm"
 
-
 if (%x[egrep -i "^phpmyadmin" /etc/group].empty? == true) && (%x[grep phpmyadmin /etc/group].empty? == false)
   raise "phpmyadmin cookbook was refactored. Please do `deluser phpmyadmin` and rerun OR remove phpmyadmin cookbook from runlist. -Steven"
 end
@@ -18,10 +17,8 @@ directory "/home/phpmyadmin/" do
   recursive true
 end
 
-cookbook_file "phpMyAdmin--all-languages.tar.bz2" do
-  path "/tmp/phpMyAdmin-all-languages.tar.bz2"
-  source "phpMyAdmin-#{latest_version}-all-languages.tar.bz2"
-  mode "0755"
+remote_file "/tmp/phpMyAdmin-all-languages.tar.bz2" do
+  source "http://november.openminds.be/~steven/phpMyAdmin-3.5.4-all-languages.tar.bz2"
 end
 
 directory "/home/phpmyadmin/default_www" do
@@ -30,7 +27,6 @@ directory "/home/phpmyadmin/default_www" do
   mode 00755
   action :create
 end
-
 
 execute "extract phpmyadmin" do
   command "tar xf /tmp/phpMyAdmin-all-languages.tar.bz2 -C /home/phpmyadmin/default_www; chown -Rf phpmyadmin:phpmyadmin /home/phpmyadmin/default_www"
