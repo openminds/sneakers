@@ -1,12 +1,12 @@
-![Openminds logo](http://november.openminds.be/~steven/om-logo.png)
+![Openminds logo](http://november.openminds.be/~steven/sneaker.png)
 
-# Boxers
+# Openminds Sneakers
 
 ## Description
 
-Boxers is a simple, fast way to mimick Openminds Shared and Cloud hosting environments. We do this using vagrant/virtualbox provisioned by Chef.
+Sneakers is a simple, fast way to mimick Openminds Shared and Cloud hosting environments. We do this using vagrant/virtualbox provisioned by Chef.
 You can develop your websites and test it straight on the VM (Virtual Machine) without the need for deploying or doing complex tasks.
-If your website works in our boxers, it should work on our production servers.
+If your website works in our Sneakers, it should work on our production servers.
 
 ## Dependencies
 
