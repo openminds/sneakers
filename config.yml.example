@@ -1,12 +1,16 @@
 app1:
   app_directory: "/Users/name/Developer/boxersapp1"
   type: "php53"
-  http_port: 8090
+  http_port: 8010
+  admin_port: 8011
+  mysql_port: 8012
   memory: 1024
 
 app2:
   app_directory: "/Users/name/Developer/boxersapp2"
   type: "php54"
-  http_port: 8090
+  http_port: 8020
+  admin_port: 8021
+  mysql_port: 8022
   memory: 1024
 
