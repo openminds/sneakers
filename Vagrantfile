@@ -11,7 +11,11 @@ Vagrant::Config.run do |config|
       node.vm.forward_port 80, box['http_port']
       node.vm.forward_port 8080, box['admin_port']
       node.vm.forward_port 8080, box['mysql_port']
-      node.vm.customize ["modifyvm", :id, "--memory", "#{box['memory']}"]
+      Vagrant.configure("2") do |config|
+        config.vm.provider :virtualbox do |vb|
+          vb.customize ["modifyvm", :id, "--memory", "#{box['memory']}"]
+        end
+      end
       node.vm.box = "debian-6.0.7-amd64-ruby1.9.3.box"
       node.vm.box_url = 'http://mirror.openminds.be/vagrant-boxes/debian-6.0.7-amd64-ruby1.9.3.box'
       node.vm.share_folder "apps", "/home/vagrant/apps/default", box['app_directory']
