@@ -1,9 +1,15 @@
 raise "You can not use passenger recipe in conjunction with apache::php" if node.recipes.include? "apache::php"
 
-gem_package "passenger"
+gem_package "passenger" do
+  gem_binary("/usr/bin/gem")
+end
 
-%w[libapr1-dev libaprutil1-dev libpq5 libcurl4-openssl-dev libxslt1-dev libxml2-dev apache2-prefork-dev dpatch libaprutil1-dev libapr1-dev libpcre3-dev sharutils].each do |pkg|
+%w[libapr1-dev libaprutil1-dev libpq5 libcurl4-openssl-dev libxslt1-dev libxml2-dev apache2-prefork-dev dpatch libaprutil1-dev libapr1-dev libpcre3-dev sharutils libaprutil1-dbd-sqlite3 libqt4-sql-sqlite libsqlite3-0 libsqlite3-dev].each do |pkg|
  package pkg
+end
+
+gem_package "sqlite3" do
+  gem_binary("/usr/bin/gem")
 end
 
 package "libpq-dev" do
@@ -44,4 +50,9 @@ end
 
 gem_package "bundler" do
   action :install
+end
+
+cookbook_file "/etc/apache2/sites-available/default" do
+  source "rack_vhost.conf"
+  notifies :reload, "service[apache2]"
 end
