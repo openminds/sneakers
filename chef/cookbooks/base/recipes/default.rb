@@ -47,3 +47,15 @@ cookbook_file "/etc/mime.types" do
   group  "root"
   mode  0644
 end
+
+package "postfix"
+
+cookbook_file "/etc/postfix/main.cf" do
+  source "main.cf"
+  owner "root"
+  group "root"
+  mode 00644
+  notifies :restart, "service[postfix]"
+end
+
+service "postfix"
