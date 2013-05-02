@@ -47,15 +47,3 @@ template "config.inc.php" do
   owner "phpmyadmin"
   mode "0644"
 end
-
-php_fpm_fgci_string = "FastCGIExternalServer /usr/sbin/php-fpm-phpmyadmin -socket /var/run/php_fpm_phpmyadmin.sock -idle-timeout 600 -pass-header Authorization"
-execute "Add the php-fpm socket to the fpm-sockets-file for phpmyadmin" do
-  command "echo '#{php_fpm_fgci_string}' >> /etc/apache2/conf.d/php-fpm-fcgi-servers"
-  # als de fpm fcgi string al geconfigureerd is: NIET doen.
-  # als de user niet bestaat: NIET doen.
-  # als de fcgi string nog niet geconfigureerd, en de user bestaat: WEL doen.
-  not_if "grep '#{php_fpm_fgci_string}' /etc/apache2/conf.d/php-fpm-fcgi-servers || (id phpmyadmin; if [ \"\$?\" -ne \"0\" ]; then exit 0; else exit 1; fi)"
-  action :run
-  notifies :restart, "service[apache2]"
-  notifies :restart, "service[php5-fpm]"
-end

@@ -1,9 +1,9 @@
 server {
-    listen       80;
+    listen       <%= @listen_port %>;
     server_name  localhost;
 
     location / {
-        proxy_pass      http://localhost:8080;
+        proxy_pass      http://localhost:<%= @backend_port %>;
         include         /etc/nginx/proxy_vhost.conf;
     }
 

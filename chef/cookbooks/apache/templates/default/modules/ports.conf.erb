@@ -1,6 +1,3 @@
 #This file generated via template by Chef.
-<% node[:apache][:listen_ports].each do |port| -%>
-Listen <%= port %>
-NameVirtualHost *:<%= port %>
-
-<% end -%>
+Listen <%= node[:base][:app_settings].admin_port.to_s %>
+NameVirtualHost *:<%= node[:base][:app_settings].admin_port.to_s %>

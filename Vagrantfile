@@ -8,8 +8,8 @@ Vagrant::Config.run do |config|
     box = box_config[1]
     config.vm.define name do |node|
       node.vm.host_name = name
-      node.vm.forward_port 80, box['http_port']
-      node.vm.forward_port 8080, box['admin_port']
+      node.vm.forward_port box['http_port'], box['http_port']
+      node.vm.forward_port box['admin_port'], box['admin_port']
       node.vm.forward_port 3306, box['mysql_port']
       Vagrant.configure("2") do |config|
         config.vm.provider :virtualbox do |vb|
@@ -25,7 +25,7 @@ Vagrant::Config.run do |config|
         chef.roles_path = "chef/roles"
 
         chef.add_recipe "base"
-        chef.json.merge!(:base => {:name => box_config[0]})
+        chef.json.merge!(:base => {:name => name, :app_settings => box})
         chef.add_recipe "apache"
         chef.add_recipe "nginx"
         chef.add_recipe "mysql"
