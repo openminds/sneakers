@@ -14,7 +14,11 @@ template "/etc/nginx/extra.d/proxy.conf" do
   action :create
 end
 
-cookbook_file "/etc/nginx/conf.d/default.conf" do
-  source "default.conf"
+template "/etc/nginx/conf.d/default.conf" do
+  source "proxy/default.conf.erb"
+  owner "root"
+  group "root"
+  mode "0644"
+  variables( :backend_port => node[:base][:app_settings].admin_port.to_s )
   notifies :reload, "service[nginx]"
 end

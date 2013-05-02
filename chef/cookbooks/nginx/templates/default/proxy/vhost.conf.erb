@@ -1,7 +1,7 @@
 # proxy for <%= @name %>
 
 server {
-  listen [::]:80;
+  listen [::]:<%= @port %>;
   server_name <%= @servername %> <%= @serveraliases.join(" ") %>;
   location / {
         proxy_pass      http://localhost:8080;
