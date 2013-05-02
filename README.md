@@ -33,7 +33,7 @@ soon(-ish): shared varnish support
 
 Clone this repository:
 
-    git clone git@github.com:..........
+    git clone git://github.com/openminds/sneakers.git
 
 Make sure all submodules are up-to-date:
 
