@@ -55,3 +55,22 @@ directory "/home/vagrant/log/apache2/default" do
   recursive true
   mode 0755
 end
+
+directory "/home/vagrant/error_document" do
+  owner "vagrant"
+  group "vagrant"
+  mode 00755
+  action :create
+  recursive true
+end
+
+template "/home/vagrant/error_document/index.html" do
+  source "error.html.erb"
+  owner "vagrant"
+  group "vagrant"
+  variables(
+    :app_directory => node[:base][:app_settings].app_directory.to_s,
+    :app_name => node[:base][:name]
+  )
+  mode 00644
+end
