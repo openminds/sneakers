@@ -88,3 +88,28 @@ To destroy all VM's:
 If you run `vagrant` by itself, help will be displayed showing all available subcommands. In addition to this, you can run any Vagrant command with the `-h` flag to output help about that specific command.
 
 Develop your app in the directory you've given with the `app_directory` parameter. When you surf to `http://localhost:9000` (or not 9000 but another port you've set with http_port) you should see your website as it would show on an Openminds production server.
+
+### Databases
+
+You should have a database with a database user named after your app. In this example that would be `myapp` or `myotherapp`. Password will always be `vagrant`. The mysql root user also has password `vagrant`. phpMyAdmin is available under `http://localhost:9000/phpmyadmin` (change port 9000 if applicable).
+
+To list the credentials of the default example:
+
+    * database: myapp
+    * database user: myapp
+    * database password: vagrant
+
+    * database root user: root
+    * database root password: vagrant
+
+    * phpMyADmin: http://localhost:9000/phpmyadmin
+
+## Issues and Feedback
+
+Please submit issues through Github 'issues', or mail us at support@openminds.be. Feel free to give feedback.
+
+## Todo's
+
+ * Mimick Shared Varnish
+ * Capistrano deploy.rb config generator
+
