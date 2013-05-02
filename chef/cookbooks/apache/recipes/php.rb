@@ -76,7 +76,7 @@ end
 
 template "/etc/apache2/sites-available/default" do
   source "php_vhost.conf.erb"
-  variables( :port => node[:base][:app_settings].admin_port.to_s )
+  variables( :port => 8080 )
   notifies :reload, "service[apache2]"
 end
 
