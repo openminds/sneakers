@@ -19,6 +19,9 @@ template "/etc/nginx/conf.d/default.conf" do
   owner "root"
   group "root"
   mode "0644"
-  variables( :backend_port => node[:base][:app_settings].admin_port.to_s )
+  variables(
+    :backend_port => node[:base][:app_settings].admin_port.to_s,
+    :listen_port => node[:base][:app_settings].http_port.to_s
+  )
   notifies :reload, "service[nginx]"
 end

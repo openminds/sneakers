@@ -27,7 +27,7 @@ def proxy_resource(exec_action)
       :servername => new_resource.servername,
       :serveraliases => new_resource.serveraliases,
       :user => new_resource.user,
-      :port => node[:base][:app_settings].admin_port.to_s
+      :port => node[:base][:app_settings].http_port.to_s
     action :nothing
     notifies :reload, "service[nginx]"
   end
