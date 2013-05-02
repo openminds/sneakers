@@ -25,7 +25,7 @@ Vagrant::Config.run do |config|
         chef.roles_path = "chef/roles"
 
         chef.add_recipe "base"
-        chef.json.merge!(:base => {:name => box_config[0]})
+        chef.json.merge!(:base => {:name => name, :app_settings => box})
         chef.add_recipe "apache"
         chef.add_recipe "nginx"
         chef.add_recipe "mysql"
