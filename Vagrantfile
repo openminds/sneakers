@@ -12,7 +12,7 @@ Vagrant::Config.run do |config|
     box = box_config[1]
     config.vm.define name do |node|
       node.vm.host_name = name
-      node.vm.forward_port box['http_port'], box['http_port']
+      node.vm.forward_port 80, box['http_port']
       Vagrant.configure("2") do |config|
         config.vm.provider :virtualbox do |vb|
           vb.customize ["modifyvm", :id, "--memory", "#{box['memory']}"]
