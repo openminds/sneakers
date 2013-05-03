@@ -1,6 +1,10 @@
 require 'yaml'
 
-boxes_configuration = YAML.load_file('config.yml')
+begin
+  boxes_configuration = YAML.load_file('config.yml')
+rescue
+  abort "No config.yml found. Copy config.yml.example to get started."
+end
 
 Vagrant::Config.run do |config|
   boxes_configuration.each do |box_config|
