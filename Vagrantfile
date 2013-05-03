@@ -2,7 +2,7 @@ require 'yaml'
 
 begin
   boxes_configuration = YAML.load_file('config.yml')
-rescue
+rescue Errno::ENOENT
   abort "No config.yml found. Copy config.yml.example to get started."
 end
 
