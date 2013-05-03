@@ -1,5 +1,5 @@
 <VirtualHost *:<%= @port %>>
-  DocumentRoot /home/vagrant/apps/default
+  DocumentRoot <%= @document_root %>
 
   # Logging
   ErrorLog /home/vagrant/log/apache2/default/default_error.log
@@ -13,7 +13,7 @@
   Alias /sneakers-error /home/vagrant/error_document
 
   DirectoryIndex index.php index.html
-  <Directory /home/vagrant/apps/default>
+  <Directory <%= @document_root %>>
     Options -Indexes
     AllowOverride All
     Allow from All

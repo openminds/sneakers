@@ -76,8 +76,11 @@ end
 
 template "/etc/apache2/sites-available/default" do
   source "php_vhost.conf.erb"
-  variables( :port => 8080 )
-  notifies :reload, "service[apache2]"
+  variables(
+    :port => 8080,
+    :document_root => ::File.join('/home/vagrant/apps/default', documentroot_suffix)
+  )
+  notifies :restart, "service[apache2]"
 end
 
 cookbook_file "/etc/php5/fpm/pool.d/vagrant.conf" do
