@@ -63,6 +63,11 @@ Edit the config file to represent your apps. You can add as many as you want (as
  * _http\_port_: The VM will forward port 80 to another port on your machine. pick a port that's unused on your local machine.
  * _memory_: How much memory your VM may use. Be carefull, the more memory your VM has, the less your host machine has.
 
+** Optional: **
+
+ * _mysql_port_: enables port forwarding to the mysql port, to the port specified
+ * _documentroot_suffix_: sets documentroot suffix, for when your application is in a subdirectory of the shared folder.
+
 Caveats:
  * each app will run in its own VM, so make sure that if you add multiple apps that they all have a different http_port set up.
  * this is a yml file, indentation is important.
@@ -103,6 +108,10 @@ To list the credentials of the default example:
     * database root password: vagrant
 
     * phpMyADmin: http://localhost:9000/phpmyadmin
+
+If you want to connect from the host machine, you need to set `mysql_port` in `config.yml` and connect to the port on `127.0.0.1`. For example (given `mysql_port` is set to `3308` in `config.yml` for `myapp`):
+
+    mysql -P 3308 -h 127.0.0.1 -u myapp -p myapp
 
 ## Issues and Feedback
 
