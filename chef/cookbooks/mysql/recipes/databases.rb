@@ -6,7 +6,7 @@ execute "create database and user" do
 
   echo "user: $USER, db: $DB, pass: $PASS"
 
-  echo "create database $DB; grant all on $DB.* to $USER@localhost identified by '$PASS'; grant create view on $DB.* to $USER@localhost identified by '$PASS'; grant show view on $DB.* to $USER@localhost identified by '$PASS'" | mysql --defaults-file=/root/.my.cnf mysql
+  echo "create database $DB; grant all on $DB.* to $USER@'%' identified by '$PASS'; grant create view on $DB.* to $USER@'%' identified by '$PASS'; grant show view on $DB.* to $USER@'%' identified by '$PASS'" | mysql --defaults-file=/root/.my.cnf mysql
   echo "server: localhost"
   echo "database: $DB"
   echo "db user:  $USER"
@@ -14,5 +14,5 @@ execute "create database and user" do
   echo ""
   echo ""
   EOC
-  not_if "mysql -e \"show databases\" | grep vagrant"
+  not_if "mysql -e \"select * from mysql.user\" | grep % | grep vagrant"
 end
