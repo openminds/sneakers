@@ -10,6 +10,8 @@ Vagrant::Config.run do |config|
   boxes_configuration.each do |box_config|
     name = box_config[0]
     box = box_config[1]
+    throw "http_port can not be #{box['http_port']}. Please change it." if [111, 45587, 22, 25, 3306, 22, 42].include? box['http_port']
+
     config.vm.define name do |node|
       node.vm.host_name = name
       node.vm.forward_port box['http_port'], box['http_port']
