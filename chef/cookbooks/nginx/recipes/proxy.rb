@@ -23,5 +23,5 @@ template "/etc/nginx/conf.d/default.conf" do
     :backend_port => 42,
     :listen_port => node[:base][:app_settings].http_port.to_s
   )
-  notifies :reload, "service[nginx]"
+  notifies :restart, "service[nginx]"
 end

@@ -54,5 +54,5 @@ end
 
 cookbook_file "/etc/apache2/sites-available/default" do
   source "rack_vhost.conf"
-  notifies :reload, "service[apache2]"
+  notifies :restart, "service[apache2]"
 end

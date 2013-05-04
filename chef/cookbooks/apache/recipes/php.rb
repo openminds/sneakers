@@ -70,7 +70,7 @@ end
     owner "root"
     group "root"
     mode "0644"
-    notifies :reload, "service[php5-fpm]"
+    notifies :restart, "service[php5-fpm]"
   end
 end
 
@@ -85,7 +85,7 @@ end
 
 cookbook_file "/etc/php5/fpm/pool.d/vagrant.conf" do
   source "fpm-pool.conf"
-  notifies :reload, "service[php5-fpm]"
+  notifies :restart, "service[php5-fpm]"
 end
 
 file "/etc/apache2/conf.d/php-fpm-fcgi-servers" do
