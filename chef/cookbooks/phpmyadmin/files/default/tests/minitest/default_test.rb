@@ -9,6 +9,6 @@ class TestPhpMyAdmin < MiniTest::Chef::TestCase
   end
 
   def test_phpmyadmin_page
-    assert Net::HTTP.get(URI.parse("http://127.0.0.1:8080/phpmyadmin"))
+    assert Net::HTTP.get(URI.parse("http://127.0.0.1:42/phpmyadmin"))
   end
 end

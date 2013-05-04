@@ -77,7 +77,7 @@ end
 template "/etc/apache2/sites-available/default" do
   source "php_vhost.conf.erb"
   variables(
-    :port => 8080,
+    :port => 42,
     :document_root => ::File.join('/home/vagrant/apps/default', documentroot_suffix)
   )
   notifies :restart, "service[apache2]"

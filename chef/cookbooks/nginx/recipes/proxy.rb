@@ -20,7 +20,7 @@ template "/etc/nginx/conf.d/default.conf" do
   group "root"
   mode "0644"
   variables(
-    :backend_port => 8080,
+    :backend_port => 42,
     :listen_port => node[:base][:app_settings].http_port.to_s
   )
   notifies :reload, "service[nginx]"

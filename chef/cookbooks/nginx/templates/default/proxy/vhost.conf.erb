@@ -4,7 +4,7 @@ server {
   listen [::]:<%= @port %>;
   server_name <%= @servername %> <%= @serveraliases.join(" ") %>;
   location / {
-        proxy_pass      http://localhost:8080;
+        proxy_pass      http://localhost:42;
         include         /etc/nginx/proxy_vhost.conf;
   }
 }
