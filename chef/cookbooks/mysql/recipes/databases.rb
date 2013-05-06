@@ -16,3 +16,11 @@ execute "create database and user" do
   EOC
   not_if "mysql -e \"select * from mysql.user\" | grep % | grep vagrant"
 end
+
+execute "allow remote access for mysql root user" do
+  command <<-EOC
+  echo "GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'vagrant' WITH GRANT OPTION;"  | mysql --defaults-file=/root/.my.cnf mysql
+  echo "FLUSH PRIVILEGES;"  | mysql --defaults-file=/root/.my.cnf mysql
+  EOC
+  not_if "mysql -e \"select * from mysql.user\" | grep % | grep root"
+end
