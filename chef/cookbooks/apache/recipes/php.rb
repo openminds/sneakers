@@ -37,7 +37,7 @@ end
   package pkg
 end
 
-template "/etc/php5/conf.d/apc.ini" do
+template "/etc/php5/conf.d/20-apc.ini" do
   source "apc.ini.erb"
   mode "0644"
   action :create
