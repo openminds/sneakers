@@ -31,4 +31,8 @@ class TestApache2 < MiniTest::Chef::TestCase
   def test_default_page
     assert Net::HTTP.get(URI('http://127.0.0.1:42'))
   end
+
+  def test_sneakers_page
+    assert Net::HTTP.get(URI("http://127.0.0.1:#{node[:base][:app_settings].http_port.to_s}/this_page_does_not_exist_ohzie2saeliiJahl")).to_s.include? "Sneakers"
+  end
 end
