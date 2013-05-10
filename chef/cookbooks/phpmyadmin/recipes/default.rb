@@ -19,6 +19,7 @@ end
 
 remote_file "/tmp/phpMyAdmin-all-languages.tar.bz2" do
   source "http://november.openminds.be/~steven/phpMyAdmin-3.5.4-all-languages.tar.bz2"
+  not_if { ::File.exists? "/tmp/phpMyAdmin-all-languages.tar.bz2" }
 end
 
 directory "/home/phpmyadmin/default_www" do
