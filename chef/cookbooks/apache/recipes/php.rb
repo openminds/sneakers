@@ -96,3 +96,8 @@ file "/etc/apache2/conf.d/php-fpm-fcgi-servers" do
   content "FastCGIExternalServer /usr/sbin/php-fpm-vagrant -socket /var/run/php_fpm_vagrant.sock -idle-timeout 600 -pass-header Authorization"
   notifies :restart, "service[apache2]"
 end
+
+execute "install drush" do
+  command "pear channel-discover pear.drush.org && pear install drush/drush && /usr/bin/drush"
+  creates "/usr/bin/drush"
+end
