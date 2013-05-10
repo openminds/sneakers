@@ -36,4 +36,12 @@ class TestPhp < MiniTest::Chef::TestCase
       assert system('php -v | grep 5.4')
     end
   end
+
+  def test_if_drush_exists
+    assert File.exists? "/usr/bin/drush"
+  end
+
+  def test_if_drush_is_executable
+    assert system('sudo -u vagrant drush')
+  end
 end
