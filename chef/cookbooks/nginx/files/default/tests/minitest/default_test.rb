@@ -16,6 +16,6 @@ class TestNginx < MiniTest::Chef::TestCase
   end
 
   def test_connection_page
-    assert Net::HTTP.get('127.0.0.1', '/')
+    assert Net::HTTP.get(URI("http://127.0.0.1:#{node[:base][:app_settings].http_port.to_s}"))
   end
 end

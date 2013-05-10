@@ -29,6 +29,6 @@ class TestApache2 < MiniTest::Chef::TestCase
   end
 
   def test_default_page
-    assert Net::HTTP.get('127.0.0.1', '/')
+    assert Net::HTTP.get(URI('http://127.0.0.1:42'))
   end
 end
