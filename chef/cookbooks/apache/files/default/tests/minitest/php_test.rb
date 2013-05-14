@@ -24,6 +24,10 @@ class TestPhp < MiniTest::Chef::TestCase
       assert system("php -i | grep 'apc.enabled => On'")
   end
 
+  def test_that_timezone_is_europe_brussels
+      assert system("php -i | grep 'date.timezone => Europe/Brussels'")
+  end
+
   def test_that_the_service_is_running
     assert system('/etc/init.d/php5-fpm status')
   end
