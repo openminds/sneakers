@@ -39,14 +39,17 @@ Vagrant::Config.run do |config|
         when /^php5[3|4]$/
           chef.add_recipe "apache::php"
           chef.json.merge!(:php => {:version => box['type'] })
+
+          chef.add_recipe "apache::php_xdebug" if box['php_xdebug']
+          
         when "ruby193"
           chef.add_recipe "apache::passenger"
         else
           raise "Unknown type of server. Needs to be php53, ruby193, ... Please RTFM."
         end
         ## Enable for Chef development:
-        # chef.add_recipe "chef_handler"
-        # chef.add_recipe "minitest-handler"
+        chef.add_recipe "chef_handler"
+        chef.add_recipe "minitest-handler"
       end
     end
   end
