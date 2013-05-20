@@ -441,7 +441,7 @@ expose_php = On
 ; Maximum execution time of each script, in seconds
 ; http://php.net/max-execution-time
 ; Note: This directive is hardcoded to 0 for the CLI SAPI
-max_execution_time = 60
+max_execution_time = <%= node[:php][:max_execution_time] %>
 
 ; Maximum amount of time each script may spend parsing request data. It's a good
 ; idea to limit this time on productions servers in order to eliminate unexpectedly
@@ -451,7 +451,7 @@ max_execution_time = 60
 ; Development Value: 60 (60 seconds)
 ; Production Value: 60 (60 seconds)
 ; http://php.net/max-input-time
-max_input_time = 60
+max_input_time = <%= node[:php][:max_input_time] %>
 
 ; Maximum input variable nesting level
 ; http://php.net/max-input-nesting-level
@@ -462,7 +462,7 @@ max_input_time = 60
 
 ; Maximum amount of memory a script may consume (128MB)
 ; http://php.net/memory-limit
-memory_limit = 192M
+memory_limit = <%= node[:php][:memory_limit] %>
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; Error handling and logging ;
@@ -518,7 +518,7 @@ memory_limit = 192M
 ; Development Value: E_ALL | E_STRICT
 ; Production Value: E_ALL & ~E_DEPRECATED
 ; http://php.net/error-reporting
-error_reporting = E_ALL & ~E_DEPRECATED
+error_reporting = <%= node[:php][:error_reporting] %>
 
 ; This directive controls whether or not and where PHP will output errors,
 ; notices and warnings too. Error output is very useful during development, but
@@ -535,7 +535,7 @@ error_reporting = E_ALL & ~E_DEPRECATED
 ; Development Value: On
 ; Production Value: Off
 ; http://php.net/display-errors
-display_errors = Off
+display_errors = <%= node[:php][:display_errors] %>
 
 ; The display of errors which occur during PHP's startup sequence are handled
 ; separately from display_errors. PHP's default behavior is to suppress those
@@ -546,7 +546,7 @@ display_errors = Off
 ; Development Value: On
 ; Production Value: Off
 ; http://php.net/display-startup-errors
-display_startup_errors = Off
+display_startup_errors = <%= node[:php][:display_startup_errors] %>
 
 ; Besides displaying errors, PHP can also log errors to locations such as a
 ; server-specific log, STDERR, or a location specified by the error_log
@@ -608,7 +608,7 @@ track_errors = Off
 ; Development Value: On
 ; Production value: Off
 ; http://php.net/html-errors
-html_errors = Off
+html_errors = <%= node[:php][:html_errors] %>
 
 ; If html_errors is set On PHP produces clickable error messages that direct
 ; to a page describing the error or function causing the error in detail.
@@ -888,7 +888,7 @@ file_uploads = On
 
 ; Maximum allowed size for uploaded files.
 ; http://php.net/upload-max-filesize
-upload_max_filesize = 32M
+upload_max_filesize = <%= node[:php][:upload_max_filesize] %>
 
 ; Maximum number of files that can be uploaded via a single request
 max_file_uploads = 20
