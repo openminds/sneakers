@@ -65,8 +65,8 @@ file "/etc/php5/conf.d/sessions-gc.ini" do
 end
 
 %w(cli fpm).each do |type|
-  cookbook_file "/etc/php5/#{type}/php.ini" do
-    source "php.ini"
+  template "/etc/php5/#{type}/php.ini" do
+    source "php.ini.erb"
     owner "root"
     group "root"
     mode "0644"
