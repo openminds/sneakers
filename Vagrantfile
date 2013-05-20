@@ -48,8 +48,8 @@ Vagrant::Config.run do |config|
           raise "Unknown type of server. Needs to be php53, ruby193, ... Please RTFM."
         end
         ## Enable for Chef development:
-        chef.add_recipe "chef_handler"
-        chef.add_recipe "minitest-handler"
+        # chef.add_recipe "chef_handler"
+        # chef.add_recipe "minitest-handler"
       end
     end
   end
