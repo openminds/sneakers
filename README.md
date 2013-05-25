@@ -123,3 +123,7 @@ Please submit issues through Github 'issues', or mail us at support@openminds.be
  * Mimick Shared Varnish
  * Capistrano deploy.rb config generator
 
+## Known Issues
+
+ 1. Virtualbox can not run 64bit VM's on a 32bit host system. Since our debian images are 64bit, this makes sneakers incompatible with 32bit host systems (ie. Windows 32bit).
+ We run 64bit kernels in production and thus are not planning on supporting 32bit images in sneakers. Feel free to change the Vagrantfile to use a 32bit image but keep in mind that this will not be a correct representation of our production servers.
