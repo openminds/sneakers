@@ -136,12 +136,12 @@ One work-around (though you're on your own if you get in trouble):
 
 Change `node.vm.box` and `node.vm.box_url` in Vagrantfile to:
 
-    `node.vm.box = "debian-6.0.7-amd64-ruby1.9.3.box"`
-    `node.vm.box_url = 'http://mirror.openminds.be/vagrant-boxes/openminds-debian-squeeze-i386.box'`
+    node.vm.box = "debian-6.0.7-32bit-ruby1.9.3.box"
+    node.vm.box_url = 'http://mirror.openminds.be/vagrant-boxes/openminds-debian-squeeze-i386.box'
 
 Your vagrant run will fail. Log in with `vagrant ssh` and run the following:
 
-    `sudo -i`
-    `/opt/chef/embedded/bin/gem install chef`
+    sudo -i
+    /opt/chef/embedded/bin/gem install chef
 
 Try again with `vagrant provision`
