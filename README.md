@@ -125,5 +125,23 @@ Please submit issues through Github 'issues', or mail us at support@openminds.be
 
 ## Known Issues
 
- 1. Virtualbox can not run 64bit VM's on a 32bit host system. Since our debian images are 64bit, this makes sneakers incompatible with 32bit host systems (ie. Windows 32bit).
- We run 64bit kernels in production and thus are not planning on supporting 32bit images in sneakers. Feel free to change the Vagrantfile to use a 32bit image but keep in mind that this will not be a correct representation of our production servers.
+### If your run is stuck on `waiting for vm to boot`
+
+You're probably running on a 32bit machine.
+
+Virtualbox can not run 64bit VM's on a 32bit host system. Since our debian images are 64bit, this makes sneakers incompatible with 32bit host systems.
+We run 64bit kernels in production and thus are not planning on supporting 32bit images in sneakers.
+
+One work-around (though you're on your own if you get in trouble):
+
+Change `node.vm.box` and `node.vm.box_url` in Vagrantfile to:
+
+    `node.vm.box = "debian-6.0.7-amd64-ruby1.9.3.box"`
+    `node.vm.box_url = 'http://mirror.openminds.be/vagrant-boxes/openminds-debian-squeeze-i386.box'`
+
+Your vagrant run will fail. Log in with `vagrant ssh` and run the following:
+
+    `sudo -i`
+    `/opt/chef/embedded/bin/gem install chef`
+
+Try again with `vagrant provision`
