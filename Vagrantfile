@@ -35,6 +35,7 @@ Vagrant::Config.run do |config|
         chef.add_recipe "nginx"
         chef.add_recipe "mysql"
         chef.add_recipe "phpmyadmin"
+        chef.add_recipe "extra::wkhtmltopdf" if box['wkhtmltopdf']
         case box['type']
         when /^php5[3|4]$/
           chef.add_recipe "apache::php"

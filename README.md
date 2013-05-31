@@ -68,6 +68,7 @@ Edit the config file to represent your apps. You can add as many as you want (as
  * _mysql_port_: enables port forwarding to the mysql port, to the port specified
  * _documentroot_suffix_: sets documentroot suffix, for when your application is in a subdirectory of the shared folder.
  * _php_xdebug_: enables [xdebug](http://xdebug.org/) support for php
+* _wkhtmltopdf_: enables [wkhtmltopdf](https://code.google.com/p/wkhtmltopdf/) support (use 'xvfb-run wkhtmltopdf file.html file.pdf')
 
 Caveats:
  * each app will run in its own VM, so make sure that if you add multiple apps that they all have a different http_port set up.
