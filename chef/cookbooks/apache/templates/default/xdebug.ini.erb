@@ -2,6 +2,7 @@
 zend_extension=<%= `find /usr -name "xdebug.so" | tr -d "\n"` %>
 xdebug.cli_color = <%= @params['cli_color'] %>
 xdebug.scream = <%= @params['scream'] %>
+xdebug.max_nesting_level = <%= @params['max_nesting_level'] %>
 
 [xdebug-remote-debug]
 xdebug.remote_enable = <%= @params['remote_enable'] %>
