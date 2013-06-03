@@ -70,6 +70,7 @@ Edit the config file to represent your apps. You can add as many as you want (as
  * _php_xdebug_: enables [xdebug](http://xdebug.org/) support for php
  * _nfs_: enables [NFS](http://en.wikipedia.org/wiki/Network_File_System) support. This allows faster file sharing than the basic file sharing. NFS is not supported on Windows hosts.
  * _ip_: sets custom IP.
+* _wkhtmltopdf_: enables [wkhtmltopdf](https://code.google.com/p/wkhtmltopdf/) support
 
 Caveats:
  * each app will run in its own VM, so make sure that if you add multiple apps that they all have a different http_port set up.
