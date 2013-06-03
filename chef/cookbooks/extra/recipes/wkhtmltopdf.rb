@@ -12,6 +12,7 @@ end
 remote_file download_dest do
   source node[:wkhtmltopdf][:static_download_url]
   mode '0644'
+  checksum node[:wkhtmltopdf][:checksum]
   action :create_if_missing
 end
 
