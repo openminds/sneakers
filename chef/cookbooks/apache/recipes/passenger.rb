@@ -52,7 +52,10 @@ gem_package "bundler" do
   action :install
 end
 
-cookbook_file "/etc/apache2/sites-available/default" do
-  source "rack_vhost.conf"
+template "/etc/apache2/sites-available/default" do
+  source "rack_vhost.conf.erb"
+  mode "0644"
+  owner "root"
+  action :create
   notifies :restart, "service[apache2]"
 end
