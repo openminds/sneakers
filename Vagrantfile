@@ -16,6 +16,7 @@ Vagrant::Config.run do |config|
       node.vm.host_name = name
       node.vm.forward_port box['http_port'], box['http_port']
       node.vm.forward_port 3306, box['mysql_port'] if box['mysql_port']
+      node.vm.network :hostonly, "192.168.33.10" if box['nfs']
       Vagrant.configure("2") do |config|
         config.vm.provider :virtualbox do |vb|
           vb.customize ["modifyvm", :id, "--memory", "#{box['memory']}"]
@@ -23,7 +24,7 @@ Vagrant::Config.run do |config|
       end
       node.vm.box = "debian-6.0.7-amd64-ruby1.9.3.box"
       node.vm.box_url = 'http://mirror.openminds.be/vagrant-boxes/debian-6.0.7-amd64-ruby1.9.3.box'
-      node.vm.share_folder "apps", "/home/vagrant/apps/default", box['app_directory']
+      node.vm.share_folder "apps", "/home/vagrant/apps/default", box['app_directory'], :nfs => box['nfs']
 
       node.vm.provision :chef_solo do |chef|
         chef.cookbooks_path = "chef/cookbooks"
