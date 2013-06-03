@@ -1,2 +1,0 @@
-package 'wkhtmltopdf'
-package 'xvfb'
