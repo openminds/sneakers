@@ -109,7 +109,7 @@ To list the credentials of the default example:
     * database root user: root
     * database root password: vagrant
 
-    * phpMyADmin: http://localhost:9000/phpmyadmin
+    * phpMyAdmin: http://localhost:9000/phpmyadmin
 
 If you want to connect from the host machine, you need to set `mysql_port` in `config.yml` and connect to the port on `127.0.0.1`. For example (given `mysql_port` is set to `3308` in `config.yml` for `myapp`):
 
