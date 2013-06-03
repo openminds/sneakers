@@ -3,15 +3,18 @@ app1:
   type: "php53"
   http_port: 8010
   memory: 1024
+  nfs: true
 
 app2:
   app_directory: "/Users/name/Developer/boxersapp2"
   type: "php54"
   http_port: 8020
   memory: 1024
+  nfs: true
 
 app3:
   app_directory: "/Users/name/Developer/boxersapp3"
   type: "ruby193"
   http_port: 8020
   memory: 1024
+  nfs: true
