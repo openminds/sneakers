@@ -3,6 +3,8 @@ class TestPhp < MiniTest::Chef::TestCase
     case node[:php][:version]
     when "php54"
       assert File.exists?("/etc/apt/sources.list.d/dotdeb-php54.list")
+      assert File.exists?("/etc/apt/sources.list.d/dotdeb.list")
+      assert File.exists?("/etc/apt/preferences.d/dotdeb-php54.list")
     else
       assert File.exists?("/etc/apt/sources.list.d/dotdeb.list")
     end

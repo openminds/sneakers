@@ -14,6 +14,15 @@ when "php54"
     key "http://www.dotdeb.org/dotdeb.gpg"
     action :add
   end
+  
+    apt_repository "dotdeb" do
+      uri "http://packages.dotdeb.org"
+      distribution node['lsb']['codename']
+      components ["all"]
+      key "http://www.dotdeb.org/dotdeb.gpg"
+      action :add
+  end
+  
 when "php53"
   apt_repository "dotdeb" do
     uri "http://packages.dotdeb.org"
@@ -26,12 +35,13 @@ else
   raise "Unknown PHP version type. Was: #{node[:php][:version]}"
 end
 
-cookbook_file "/etc/apt/preferences.d/dotdeb_php_pinning" do
-  source "dotdeb_php_pinning"
-  mode "0644"
+template "/etc/apt/preferences.d/dotdeb_php_pinning" do
+  source "dotdeb_php_pinning.erb"
   owner "root"
+  mode "0644"
   action :create
 end
+
 
 %w[php5-cli php5-common php5-fpm php5-curl php5-dev php5-gd php5-imagick php5-imap php5-mcrypt php5-mysql php5-xmlrpc php-pear php5-intl php5-apc].each do |pkg|
   package pkg
