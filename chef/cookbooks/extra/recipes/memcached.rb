@@ -14,5 +14,12 @@ template "/etc/memcached.conf" do
   owner "root"
   group "root"
   mode 00644
+  variables(
+    :listen => node['memcached']['listen'],
+    :user => node['memcached']['user'],
+    :port => node['memcached']['port'],
+    :maxconn => node['memcached']['maxconn'],
+    :memory => node['memcached']['memory']
+  )
   notifies :restart, "service[memcached]"
 end
