@@ -1,5 +1,4 @@
 class TestMemcached < MiniTest::Chef::TestCase
-
   def test_that_the_memcached_packages_are_installed
     %w[ memcached php5-memcached ].each do |pkg|
       assert system("dpkg -l | grep #{pkg}")
@@ -12,6 +11,5 @@ class TestMemcached < MiniTest::Chef::TestCase
 
   def test_that_the_memcached_service_is_running
     assert system('/etc/init.d/memcached status')
-  end  
-
+  end
 end
