@@ -4,7 +4,7 @@ class TestPhp < MiniTest::Chef::TestCase
     when "php54"
       assert File.exists?("/etc/apt/sources.list.d/dotdeb-php54.list")
       assert File.exists?("/etc/apt/sources.list.d/dotdeb.list")
-      assert File.exists?("/etc/apt/preferences.d/dotdeb-php54.list")
+      assert File.exists?("/etc/apt/preferences.d/dotdeb_php_pinning")
     else
       assert File.exists?("/etc/apt/sources.list.d/dotdeb.list")
     end
