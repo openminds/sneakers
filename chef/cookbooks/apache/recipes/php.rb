@@ -2,7 +2,6 @@ raise "You can not use php recipe in conjunction with apache::passenger" if node
 
 include_recipe "apt"
 
-service "apache2"
 service "php5-fpm"
 
 case node[:php][:version]
@@ -14,7 +13,7 @@ when "php54"
     key "http://www.dotdeb.org/dotdeb.gpg"
     action :add
   end
-  
+
     apt_repository "dotdeb" do
       uri "http://packages.dotdeb.org"
       distribution node['lsb']['codename']
@@ -22,7 +21,7 @@ when "php54"
       key "http://www.dotdeb.org/dotdeb.gpg"
       action :add
   end
-  
+
 when "php53"
   apt_repository "dotdeb" do
     uri "http://packages.dotdeb.org"
