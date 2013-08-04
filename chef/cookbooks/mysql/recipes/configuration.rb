@@ -1,4 +1,4 @@
-template "dotmy.cnf" do
+template "dotmy.cnf for vagrant user" do
   path "/home/vagrant/.my.cnf"
   source "dotmy.cnf.erb"
   mode "0600"
@@ -11,7 +11,7 @@ template "dotmy.cnf" do
   notifies :restart, "service[mysql]"
 end
 
-template "dotmy.cnf" do
+template "dotmy.cnf for root" do
   path "/root/.my.cnf"
   source "dotmy.cnf.erb"
   mode "0600"
