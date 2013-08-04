@@ -1,6 +1,8 @@
+include_recipe "apache"
+include_recipe "apache::php"
+
+
 latest_version = "3.5.4"
-service "apache2"
-service "php5-fpm"
 
 if (%x[egrep -i "^phpmyadmin" /etc/group].empty? == true) && (%x[grep phpmyadmin /etc/group].empty? == false)
   raise "phpmyadmin cookbook was refactored. Please do `deluser phpmyadmin` and rerun OR remove phpmyadmin cookbook from runlist. -Steven"
