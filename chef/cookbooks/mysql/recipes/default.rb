@@ -10,13 +10,6 @@ apt_repository "mariadb" do
   action :add
 end
 
-directory "/var/cache/local/preseeding" do
-  owner "root"
-  group "root"
-  mode 0755
-  recursive true
-end
-
 execute "preseed mysql-server" do
   command "debconf-set-selections /var/cache/local/preseeding/mysql-server.seed"
   action :nothing
