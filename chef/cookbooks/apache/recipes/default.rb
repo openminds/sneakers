@@ -38,8 +38,6 @@ apache_module "status" do
   use_custom_configuration true # make /server-status work with Drupal setups
 end
 
-apache_module "setenvif"
-apache_module "headers"
 apache_module "ssl"
 
 file "/usr/lib/apache2/suexec" do
