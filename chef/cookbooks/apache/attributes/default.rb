@@ -34,4 +34,4 @@ default[:apache][:security][:servertokens] = "Prod"
 default[:apache][:security][:serversignature] = "On"
 default[:apache][:security][:traceenable] = "Off"
 
-default[:apache][:modules_enabled] = ["actions","alias","auth_basic","authn_file","authz_default","authz_groupfile","authz_host","authz_user","autoindex","cgid","deflate","dir","env","expires","fastcgi","headers","mime","negotiation","rewrite","rpaf","setenvif","suexec","setenvif"]
+default[:apache][:modules_enabled] = ["actions","alias","auth_basic","authn_file","authz_default","authz_groupfile","authz_host","authz_user","autoindex","cgid","deflate","dir","env","expires","fastcgi","headers","mime","negotiation","rewrite","rpaf","setenvif","suexec"]
