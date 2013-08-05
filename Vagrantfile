@@ -22,8 +22,8 @@ Vagrant::Config.run do |config|
           vb.customize ["modifyvm", :id, "--memory", "#{box['memory']}"]
         end
       end
-      node.vm.box = "debian-6.0.7-amd64-ruby1.9.3.box"
-      node.vm.box_url = 'http://mirror.openminds.be/vagrant-boxes/debian-6.0.7-amd64-ruby1.9.3.box'
+      node.vm.box = "sneakers-6.0.7-20130805"
+      node.vm.box_url = 'http://mirror.openminds.be/vagrant-boxes/sneakers-6.0.7-20130805.box'
       node.vm.share_folder "apps", "/home/vagrant/apps/default", box['app_directory'], :nfs => box['nfs']
 
       node.vm.provision :chef_solo do |chef|
