@@ -16,7 +16,7 @@ Vagrant::Config.run do |config|
       node.vm.host_name = name
       node.vm.forward_port box['http_port'], box['http_port']
       node.vm.forward_port 3306, box['mysql_port'] if box['mysql_port']
-      node.vm.network :hostonly, "#{box['ip'] || '10.0.2.42'}" if box['nfs'] || box['ip']
+      node.vm.network :hostonly, "#{box['ip'] || '10.11.12.13'}" if box['nfs'] || box['ip']
       Vagrant.configure("2") do |config|
         config.vm.provider :virtualbox do |vb|
           vb.customize ["modifyvm", :id, "--memory", "#{box['memory']}"]
