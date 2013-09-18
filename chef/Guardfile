@@ -1,0 +1,24 @@
+guard 'bundler' do
+  watch('^Gemfile')
+end
+
+guard 'rspec', spec_paths: ['spec', 'cookbooks/*/spec'] do
+  watch(%r{^spec/.+_spec\.rb$})
+
+  watch('spec/spec_helper.rb') { 'spec' }
+
+  # run recipe test when recipe changed
+  watch(%r{^cookbooks/(.+)/recipes/(.+)\.rb}) do |m|
+    "cookbooks/#{m[1]}/spec/#{m[2]}_spec.rb"
+  end
+
+  # run tests when tests changed
+  watch(%r{^cookbooks/(.+)/spec/(.+)\.rb}) do |m|
+    "cookbooks/#{m[1]}/spec/#{m[2]}.rb"
+  end
+
+  # run all cookbook tests when something other than recipe changed
+  watch(%r{^cookbooks/([A-Za-z]+)/(.+)(\..*)?$}) do |m|
+    "cookbooks/#{m[1]}/spec/*_spec.rb"
+  end
+end
