@@ -17,7 +17,7 @@ package "libpq-dev" do
 end
 
 execute "passenger-install-apache2-module" do
-  command "/usr/bin/passenger-install-apache2-module --auto "
+  command "/usr/bin/passenger-install-apache2-module --auto"
   action :run
   not_if "test -f /etc/apache2/mods-available/passenger.load"
 end
