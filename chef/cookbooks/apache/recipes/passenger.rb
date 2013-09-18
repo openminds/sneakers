@@ -26,6 +26,7 @@ template "/etc/apache2/mods-available/passenger.conf" do
   source "passenger.conf.erb"
   mode "0644"
   owner "root"
+  group "root"
   action :create
   not_if "test -f /etc/apache2/mods-available/passenger.conf"
   notifies :restart, "service[apache2]"
