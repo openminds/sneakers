@@ -1,3 +1,6 @@
+include_recipe "nginx"
+
+
 cookbook_file "/etc/nginx/proxy_vhost.conf" do
   source "proxy/vhost.conf"
   owner "root"
