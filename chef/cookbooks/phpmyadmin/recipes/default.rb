@@ -18,7 +18,7 @@ end
 directory "/home/phpmyadmin/default_www" do
   owner "phpmyadmin"
   group "phpmyadmin"
-  mode 00755
+  mode '0755'
   action :create
 end
 
@@ -39,5 +39,6 @@ template "config.inc.php" do
   :hash => Digest::SHA1.hexdigest((node[:hostname]+node[:ipaddress]).to_s)
   )
   owner "phpmyadmin"
+  group "phpmyadmin"
   mode "0644"
 end
