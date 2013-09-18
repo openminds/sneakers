@@ -1,4 +1,4 @@
-raise "You can not use passenger recipe in conjunction with apache::php" if node.recipes.include? "apache::php"
+include_recipe "apache"
 
 gem_package "passenger" do
   gem_binary("/usr/bin/gem")
