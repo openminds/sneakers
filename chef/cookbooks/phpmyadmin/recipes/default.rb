@@ -1,9 +1,5 @@
 latest_version = "3.5.4"
 
-if (%x[egrep -i "^phpmyadmin" /etc/group].empty? == true) && (%x[grep phpmyadmin /etc/group].empty? == false)
-  raise "phpmyadmin cookbook was refactored. Please do `deluser phpmyadmin` and rerun OR remove phpmyadmin cookbook from runlist. -Steven"
-end
-
 user "phpmyadmin" do
   comment "phpmyadmin"
   shell "/bin/false"
