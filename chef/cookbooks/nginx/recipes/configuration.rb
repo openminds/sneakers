@@ -7,6 +7,7 @@ cookbook_file "/etc/init.d/nginx" do
   source "init.d-nginx"
   mode "0755"
   owner "root"
+  group "root"
   action :create
   notifies :start, "service[nginx]"
   notifies :run, "execute[Fix windows <CR>]"
