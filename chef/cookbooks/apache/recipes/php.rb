@@ -1,4 +1,4 @@
-raise "You can not use php recipe in conjunction with apache::passenger" if node.recipes.include? "apache::passenger"
+include_recipe "apache"
 
 include_recipe "apt"
 
