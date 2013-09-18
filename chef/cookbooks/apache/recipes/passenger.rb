@@ -57,6 +57,7 @@ template "/etc/apache2/sites-available/default" do
   source "rack_vhost.conf.erb"
   mode "0644"
   owner "root"
+  group "root"
   action :create
   notifies :restart, "service[apache2]"
 end
