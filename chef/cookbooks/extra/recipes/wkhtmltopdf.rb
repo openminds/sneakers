@@ -17,15 +17,11 @@ remote_file download_dest do
 end
 
 execute "Extract #{download_dest}" do
-  command <<-COMMAND
-    tar jxvf #{download_dest} -C #{cache_dir}
-  COMMAND
+  command "tar jxvf #{download_dest} -C #{cache_dir}"
   creates File.join(cache_dir, binary_name)
 end
 
 execute "Copy #{binary_name} to /usr/local/bin" do
-  command <<-COMMAND
-    cp #{File.join(cache_dir, binary_name)} /usr/local/bin/wkhtmltopdf
-  COMMAND
+  command "cp #{File.join(cache_dir, binary_name)} /usr/local/bin/wkhtmltopdf"
   creates '/usr/local/bin/wkhtmltopdf'
 end
