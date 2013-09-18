@@ -20,7 +20,7 @@ template "/etc/apache2/apache2.conf" do
   source "apache2.conf.erb"
   owner "root"
   group "root"
-  mode 00644
+  mode "0644"
   notifies :restart, "service[apache2]"
 end
 
