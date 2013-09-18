@@ -1,4 +1,6 @@
-service "apache2"
+service "apache2" do
+  action :enable
+end
 
 include_recipe "apt"
 
