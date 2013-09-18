@@ -8,7 +8,6 @@ end
 directory "/home/phpmyadmin/" do
   owner "phpmyadmin"
   group "phpmyadmin"
-  recursive true
 end
 
 remote_file "/tmp/phpMyAdmin-all-languages.tar.bz2" do
