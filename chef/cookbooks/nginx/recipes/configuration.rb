@@ -1,3 +1,6 @@
+include_recipe 'nginx'
+
+
 directory "/etc/nginx/extra.d"
 
 cookbook_file "/etc/init.d/nginx" do
