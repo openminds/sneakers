@@ -1,7 +1,3 @@
-include_recipe "apache"
-include_recipe "apache::php"
-
-
 latest_version = "3.5.4"
 
 if (%x[egrep -i "^phpmyadmin" /etc/group].empty? == true) && (%x[grep phpmyadmin /etc/group].empty? == false)
