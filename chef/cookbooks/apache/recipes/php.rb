@@ -2,7 +2,9 @@ include_recipe "apache"
 
 include_recipe "apt"
 
-service "php5-fpm"
+service "php5-fpm" do
+  action :enable
+end
 
 case node[:php][:version]
 when "php54"
