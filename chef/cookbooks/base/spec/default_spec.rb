@@ -6,10 +6,6 @@ describe 'base::default' do
     chef_run.converge 'base::default'
   }
 
-  it 'includes recipe apt' do
-    chef_run.should include_recipe 'apt'
-  end
-
   it 'creates /etc/apt/sources.list' do
     chef_run.should create_file_with_content '/etc/apt/sources.list', '# Managed by chef'
   end
