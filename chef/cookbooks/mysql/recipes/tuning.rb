@@ -1,4 +1,4 @@
-service 'mysql'
+include_recipe 'mysql::default'
 
 node.set["mysql"]["innodb_buffer_pool_size"] = (node["memory"]["total"].to_i / 3 / 1024).to_s + "M" unless node["mysql"].attribute? 'innodb_buffer_pool_size'
 

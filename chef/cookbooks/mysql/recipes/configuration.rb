@@ -1,4 +1,4 @@
-service 'mysql'
+include_recipe 'mysql::default'
 
 template "dotmy.cnf for vagrant user" do
   path "/home/vagrant/.my.cnf"

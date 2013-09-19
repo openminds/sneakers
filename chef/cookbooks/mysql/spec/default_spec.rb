@@ -3,7 +3,6 @@ require 'spec_helper'
 describe 'mysql::default' do
   let(:chef_run) {
     chef_run = ChefSpec::ChefRunner.new(platform:'debian', version:'6.0.5') do |node|
-      node.set[:mysql] = {}
       node.set[:memory][:total] = 1024
       node.set[:base][:name] = 'test'
     end

@@ -2,7 +2,10 @@ require 'spec_helper'
 
 describe 'mysql::configuration' do
   let(:chef_run) {
-    chef_run = ChefSpec::ChefRunner.new(platform:'debian', version:'6.0.5')
+    chef_run = ChefSpec::ChefRunner.new(platform:'debian', version:'6.0.5') do |node|
+      node.set[:memory][:total] = 1024
+      node.set[:base][:name] = 'test'
+    end
     chef_run.converge 'mysql::configuration'
   }
 
