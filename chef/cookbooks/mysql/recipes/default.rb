@@ -1,6 +1,8 @@
 service "mysql"
 node.set['mysql']['mysql_root_pass'] = "vagrant"
 
+include_recipe "apt"
+
 apt_repository "mariadb" do
   uri "http://mirror2.hs-esslingen.de/mariadb/repo/5.5/debian"
   distribution "squeeze"
