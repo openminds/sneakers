@@ -1,3 +1,5 @@
+service 'mysql'
+
 template "dotmy.cnf for vagrant user" do
   path "/home/vagrant/.my.cnf"
   source "dotmy.cnf.erb"
