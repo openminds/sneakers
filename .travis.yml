@@ -2,4 +2,4 @@ language: ruby
 rvm:
   - "1.9.3"
 gemfile: chef/Gemfile
-script: bundle exec rspec chef/cookbooks/*/spec
+script: cd chef; bundle exec rspec cookbooks/*/spec
