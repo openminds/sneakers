@@ -8,11 +8,12 @@ describe 'phpmyadmin::default' do
     chef_run.converge 'phpmyadmin::default'
   }
 
-  it 'creates phpmyadmin users' do
+  it 'creates phpmyadmin user' do
     chef_run.should create_user('phpmyadmin').with(shell: '/bin/false')
   end
 
   it 'creates /home/phpmyadmin' do
+    chef_run.should create_directory '/home/phpmyadmin/'
     directory = chef_run.directory '/home/phpmyadmin/'
     directory.should be_owned_by 'phpmyadmin', 'phpmyadmin'
   end
@@ -22,9 +23,10 @@ describe 'phpmyadmin::default' do
   end
 
   it 'creates directory /home/phpmyadmin/default_www' do
-    directory = chef_run.directory "/home/phpmyadmin/default_www"
-    directory.should be_owned_by 'phpmyadmin', 'phpmyadmin'
+    chef_run.should create_directory '/home/phpmyadmin/default_www'
+    directory = chef_run.directory '/home/phpmyadmin/default_www'
     directory.mode.should eq '0755'
+    directory.should be_owned_by 'phpmyadmin', 'phpmyadmin'
   end
 
   it 'extracts phpmyadmin' do
