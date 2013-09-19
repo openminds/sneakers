@@ -4,4 +4,5 @@ rvm:
 gemfile: chef/Gemfile
 script: cd chef; bundle exec rspec cookbooks/*/spec
 notifications:
-  hipchat: [api token]@[room name]
+  hipchat:
+    secure: "hBV3/zVBayzN2SKUDfb1SvglCwaVixTo35SDc4UzCYhsygBo+eEJop2u1RUyzjdt9ScwAHg/gJyE6MV24d2Dwa6N46RazEs1emUdalxaHhBXD+hMvgTPjdeBUkMlEYwTe3cydvXzZ0ebqPXBKHqm1KFfFK4kY4Skr13txfEKb7Y="
