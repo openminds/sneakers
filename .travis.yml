@@ -3,3 +3,5 @@ rvm:
   - "1.9.3"
 gemfile: chef/Gemfile
 script: cd chef; bundle exec rspec cookbooks/*/spec
+notifications:
+  hipchat: [api token]@[room name]
