@@ -31,7 +31,7 @@ template "/etc/apache2/mods-available/passenger.conf" do
   not_if "test -f /etc/apache2/mods-available/passenger.conf"
   notifies :restart, "service[apache2]"
   variables(
-    :passenger_snippet => %x[passenger-install-apache2-module --snippet | grep -v LoadModule]
+    :passenger_snippet => node[:apache][:passenger][:snippet]
   )
 end
 

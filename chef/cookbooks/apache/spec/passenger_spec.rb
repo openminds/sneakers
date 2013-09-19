@@ -4,6 +4,7 @@ describe 'apache::passenger' do
   let(:chef_run) {
     chef_run = ChefSpec::ChefRunner.new(platform:'debian', version:'6.0.5') do |node|
     	node.set[:base][:app_settings] = {"app_directory"=>"/Users/zhann/Desktop/app1", "type"=>"php53", "http_port"=>8010, "memory"=>1024}
+      node.set[:apache][:passenger][:snippet] = 'foo'
     end
     chef_run.converge 'apache::passenger'
   }
@@ -12,7 +13,7 @@ describe 'apache::passenger' do
     chef_run.should install_gem_package 'passenger'
   end
 
-  %w[libapr1-dev libaprutil1-dev libpq5 libcurl4-openssl-dev libxslt1-dev libxml2-dev apache2-prefork-dev dpatch libaprutil1-dev libapr1-dev libpcre3-dev sharutils libaprutil1-dbd-sqlite3 libqt4-sql-sqlite libsqlite3-0 libsqlite3-dev].each do |pkg|
+  %w[libapr1-dev libaprutil1-dev libpq5 libcurl4-openssl-dev libxslt1-dev libxml2-dev apache2-prefork-dev dpatch libpcre3-dev sharutils libqt4-sql-sqlite libsqlite3-0 libsqlite3-dev].each do |pkg|
     it "installs #{pkg}" do
       chef_run.should install_package pkg
     end
