@@ -13,10 +13,6 @@ describe 'mysql::default' do
     pending 'sets mysql service'
   end
 
-  it 'includes recipe apt' do
-    chef_run.should include_recipe 'apt'
-  end
-
   it 'sets apt repository for mariadb' do
     pending 'sets mariadb repo'
   end

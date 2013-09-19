@@ -12,10 +12,6 @@ describe 'apache::php' do
     chef_run.should include_recipe 'apache'
   end
 
-  it 'includes recipe apt' do
-    chef_run.should include_recipe 'apt'
-  end
-
   it 'sets php5-fpm service' do
     chef_run.should set_service_to_start_on_boot 'php5-fpm'
   end
