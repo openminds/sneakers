@@ -12,10 +12,6 @@ describe 'apache::default' do
     chef_run.should set_service_to_start_on_boot 'apache2'
   end
 
-  it 'includes recipe apt' do
-    chef_run.should include_recipe 'apt'
-  end
-
   it 'sets apt repository for squeeze_openminds_apache' do
     pending 'sets squeeze_openminds_apache repo'
   end
