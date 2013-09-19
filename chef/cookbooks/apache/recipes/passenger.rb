@@ -4,7 +4,7 @@ gem_package "passenger" do
   gem_binary("/usr/bin/gem")
 end
 
-%w[libapr1-dev libaprutil1-dev libpq5 libcurl4-openssl-dev libxslt1-dev libxml2-dev apache2-prefork-dev dpatch libaprutil1-dev libapr1-dev libpcre3-dev sharutils libaprutil1-dbd-sqlite3 libqt4-sql-sqlite libsqlite3-0 libsqlite3-dev].each do |pkg|
+%w[libapr1-dev libaprutil1-dev libpq5 libcurl4-openssl-dev libxslt1-dev libxml2-dev apache2-prefork-dev dpatch libpcre3-dev sharutils libqt4-sql-sqlite libsqlite3-0 libsqlite3-dev].each do |pkg|
  package pkg
 end
 
