@@ -12,10 +12,6 @@ describe 'apache::default' do
     chef_run.should set_service_to_start_on_boot 'apache2'
   end
 
-  it 'sets apt repository for squeeze_openminds_apache' do
-    pending 'sets squeeze_openminds_apache repo'
-  end
-
   %w[libcap2 apache2-mpm-worker libaprutil1-dbd-sqlite3 libaprutil1-dbd-mysql libaprutil1-dbd-odbc libaprutil1-dbd-pgsql libaprutil1-dbd-freetds libaprutil1-ldap libapache2-mod-rpaf apache2-suexec libapache2-mod-fastcgi].each do |pkg|
     it "installs #{pkg}" do
       chef_run.should install_package pkg

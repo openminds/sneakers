@@ -10,14 +10,6 @@ describe 'base::default' do
     chef_run.should create_file_with_content '/etc/apt/sources.list', '# Managed by chef'
   end
 
-  it 'sets apt repository for squeeze_mirror_openminds_be' do
-    pending 'sets squeeze_mirror_openminds_be repo'
-  end
-
-  it 'sets apt repository for squeeze_security' do
-    pending 'sets squeeze_security repo'
-  end
-
 %w[lsb lsb-release tzdata ncurses-term lsof strace snmpd locales vim bsd-mailx mingetty
   sudo build-essential xfsprogs ssh less psmisc rsync pwgen ntpdate ntp sysstat iotop git
   screen telnet debian-keyring aspell atop ffmpeg ghostscript imagemagick mysql-client ncftp

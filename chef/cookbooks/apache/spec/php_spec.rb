@@ -16,30 +16,6 @@ describe 'apache::php' do
     chef_run.should set_service_to_start_on_boot 'php5-fpm'
   end
 
-  context 'php54 installation' do
-    let(:chef_run) do
-      runner = ChefSpec::ChefRunner.new
-      runner.node.set[:php][:version] = 'php54'
-      runner.converge('apache::php')
-    end
-
-    it 'sets dotdeb-php54 repo' do
-      pending 'sets dotdeb-php54 repo'
-    end
-  end
-
-  context 'php53 installation' do
-    let(:chef_run) do
-      runner = ChefSpec::ChefRunner.new
-      runner.node.set[:php][:version] = 'php53'
-      runner.converge('apache::php')
-    end
-
-    it 'sets dotdeb repo' do
-      pending 'sets dotdeb repo'
-    end
-  end
-
   it '/etc/apt/preferences.d/dotdeb_php_pinning' do
     file = chef_run.template '/etc/apt/preferences.d/dotdeb_php_pinning'
     file.should be_owned_by 'root', 'root'

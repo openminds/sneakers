@@ -13,10 +13,6 @@ describe 'mysql::default' do
     pending 'sets mysql service'
   end
 
-  it 'sets apt repository for mariadb' do
-    pending 'sets mariadb repo'
-  end
-
   it 'creates /var/cache/local/preseeding/mysql-server.seed' do
     file = chef_run.template '/var/cache/local/preseeding/mysql-server.seed'
     file.should be_owned_by 'root', 'root'

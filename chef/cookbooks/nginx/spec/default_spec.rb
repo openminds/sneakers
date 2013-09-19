@@ -12,10 +12,6 @@ describe 'nginx::default' do
     pending 'service nginx'
   end
 
-  it 'sets nginx apt repository' do
-    pending 'apt-repo nginx'
-  end
-
   it 'installs nginx' do
     chef_run.should install_package 'nginx'
   end
