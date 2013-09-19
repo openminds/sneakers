@@ -1,8 +1,8 @@
-[![Build Status](https://travis-ci.org/openminds/sneakers.png?branch=2.0)](https://travis-ci.org/openminds/sneakers)
-
 ![Openminds logo](http://november.openminds.be/~steven/sneaker.png)
 
 # Openminds Sneakers
+
+[![Build Status](https://travis-ci.org/openminds/sneakers.png?branch=2.0)](https://travis-ci.org/openminds/sneakers)
 
 ## Description
 
