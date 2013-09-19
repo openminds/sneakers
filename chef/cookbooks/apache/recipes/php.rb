@@ -1,40 +1,40 @@
 include_recipe "apache"
 
-include_recipe "apt"
+# include_recipe "apt"
 
 service "php5-fpm" do
   action :enable
 end
 
-case node[:php][:version]
-when "php54"
-  apt_repository "dotdeb-php54" do
-    uri "http://packages.dotdeb.org"
-    distribution node['lsb']['codename']+"-php54"
-    components ["all"]
-    key "http://www.dotdeb.org/dotdeb.gpg"
-    action :add
-  end
+# case node[:php][:version]
+# when "php54"
+#   apt_repository "dotdeb-php54" do
+#     uri "http://packages.dotdeb.org"
+#     distribution node['lsb']['codename']+"-php54"
+#     components ["all"]
+#     key "http://www.dotdeb.org/dotdeb.gpg"
+#     action :add
+#   end
 
-    apt_repository "dotdeb" do
-      uri "http://packages.dotdeb.org"
-      distribution node['lsb']['codename']
-      components ["all"]
-      key "http://www.dotdeb.org/dotdeb.gpg"
-      action :add
-  end
+#     apt_repository "dotdeb" do
+#       uri "http://packages.dotdeb.org"
+#       distribution node['lsb']['codename']
+#       components ["all"]
+#       key "http://www.dotdeb.org/dotdeb.gpg"
+#       action :add
+#   end
 
-when "php53"
-  apt_repository "dotdeb" do
-    uri "http://packages.dotdeb.org"
-    distribution node['lsb']['codename']
-    components ["all"]
-    key "http://www.dotdeb.org/dotdeb.gpg"
-    action :add
-  end
-else
-  raise "Unknown PHP version type. Was: #{node[:php][:version]}"
-end
+# when "php53"
+#   apt_repository "dotdeb" do
+#     uri "http://packages.dotdeb.org"
+#     distribution node['lsb']['codename']
+#     components ["all"]
+#     key "http://www.dotdeb.org/dotdeb.gpg"
+#     action :add
+#   end
+# else
+#   raise "Unknown PHP version type. Was: #{node[:php][:version]}"
+# end
 
 template "/etc/apt/preferences.d/dotdeb_php_pinning" do
   source "dotdeb_php_pinning.erb"

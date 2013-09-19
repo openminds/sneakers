@@ -1,16 +1,16 @@
 service "mysql"
 node.set['mysql']['mysql_root_pass'] = "vagrant"
 
-include_recipe "apt"
+# include_recipe "apt"
 
-apt_repository "mariadb" do
-  uri "http://mirror2.hs-esslingen.de/mariadb/repo/5.5/debian"
-  distribution "squeeze"
-  components ["main"]
-  key "1BB943DB"
-  keyserver "keyserver.ubuntu.com"
-  action :add
-end
+# apt_repository "mariadb" do
+#   uri "http://mirror2.hs-esslingen.de/mariadb/repo/5.5/debian"
+#   distribution "squeeze"
+#   components ["main"]
+#   key "1BB943DB"
+#   keyserver "keyserver.ubuntu.com"
+#   action :add
+# end
 
 execute "preseed mysql-server" do
   command "debconf-set-selections /var/cache/local/preseeding/mysql-server.seed"

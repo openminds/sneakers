@@ -2,15 +2,15 @@ service "apache2" do
   action :enable
 end
 
-include_recipe "apt"
+# include_recipe "apt"
 
-apt_repository "squeeze_openminds_apache" do
-  uri "http://debs.openminds.be"
-  distribution node['lsb']['codename']
-  components ["apache2"]
-  key "http://debs.openminds.be/debs.openminds.key"
-  action :add
-end
+# apt_repository "squeeze_openminds_apache" do
+#   uri "http://debs.openminds.be"
+#   distribution node['lsb']['codename']
+#   components ["apache2"]
+#   key "http://debs.openminds.be/debs.openminds.key"
+#   action :add
+# end
 
 %w[libcap2 apache2-mpm-worker libaprutil1-dbd-sqlite3 libaprutil1-dbd-mysql libaprutil1-dbd-odbc libaprutil1-dbd-pgsql libaprutil1-dbd-freetds libaprutil1-ldap libapache2-mod-rpaf apache2-suexec libapache2-mod-fastcgi].each do |pkg|
   package pkg
