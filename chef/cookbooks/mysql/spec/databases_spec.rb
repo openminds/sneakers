@@ -7,7 +7,7 @@ describe 'mysql::databases' do
   }
 
   it 'creates database and user' do
-    pending 'sets postfix service'
+    pending 'creates database and user'
   end
 
   it 'allows remote access for mysql root user' do
