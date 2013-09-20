@@ -27,6 +27,8 @@ Vagrant::Config.run do |config|
       node.vm.share_folder "apps", "/home/vagrant/apps/default", box['app_directory'], :nfs => box['nfs']
 
       node.vm.provision :chef_solo do |chef|
+        chef.log_level = :auto
+
         chef.cookbooks_path = "chef/cookbooks"
         chef.roles_path = "chef/roles"
 
