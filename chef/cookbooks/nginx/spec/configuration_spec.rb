@@ -8,20 +8,12 @@ describe 'nginx::configuration' do
     chef_run.converge 'nginx::configuration'
   }
 
+  it 'includes nginx::default' do
+    chef_run.should include_recipe 'nginx::default'
+  end
+
   it 'creates /etc/nginx/extra.d directory' do
     chef_run.should create_directory '/etc/nginx/extra.d'
-  end
-
-  it 'sets nginx init file' do
-    file = chef_run.cookbook_file '/etc/init.d/nginx'
-    file.mode.should eq '0755'
-    file.should be_owned_by 'root', 'root'
-    file.should notify 'service[nginx]', :start
-    file.should notify 'execute[Fix windows <CR>]', :run
-  end
-
-  it 'creates /etc/nginx/mime.types' do
-    chef_run.should create_file '/etc/nginx/mime.types'
   end
 
   it 'creates /var/log/nginx/' do
@@ -30,6 +22,18 @@ describe 'nginx::configuration' do
 
   it 'creates /etc/nginx/mime.types' do
     file = chef_run.cookbook_file '/etc/nginx/nginx.conf'
+    file.should notify 'service[nginx]', :restart
+  end
+
+  it 'creates /etc/nginx/mime.types' do
+    chef_run.should create_file '/etc/nginx/mime.types'
+  end
+
+  it 'sets nginx init file' do
+    file = chef_run.cookbook_file '/etc/init.d/nginx'
+    file.mode.should eq '0755'
+    file.should be_owned_by 'root', 'root'
+    file.should notify 'execute[Fix windows <CR>]', :run
     file.should notify 'service[nginx]', :restart
   end
 
