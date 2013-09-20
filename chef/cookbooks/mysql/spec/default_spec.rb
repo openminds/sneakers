@@ -9,6 +9,11 @@ describe 'mysql::default' do
     chef_run.converge 'mysql::default'
   }
 
+  it 'creates /var/cache/local/preseeding directory' do
+    directory = chef_run.directory '/var/cache/local/preseeding'
+    directory.recursive.should eq true
+  end
+
   it 'creates /var/cache/local/preseeding/mysql-server.seed' do
     file = chef_run.template '/var/cache/local/preseeding/mysql-server.seed'
     file.should be_owned_by 'root', 'root'

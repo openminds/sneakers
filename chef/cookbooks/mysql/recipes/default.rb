@@ -5,6 +5,10 @@ execute 'preseed mysql-server' do
   action :nothing
 end
 
+directory "/var/cache/local/preseeding" do
+	recursive true
+end
+
 template '/var/cache/local/preseeding/mysql-server.seed' do
   source '5.5mariadb.seed.erb'
   owner 'root'
