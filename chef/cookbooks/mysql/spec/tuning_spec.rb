@@ -9,6 +9,10 @@ describe 'mysql::tuning' do
     chef_run.converge 'mysql::tuning'
   }
 
+  it 'includes mysql::default recipe' do
+    chef_run.should include_recipe "mysql::default"
+  end
+
   it 'creates /etc/mysql/conf.d/innodb_tuning.cnf' do
     file = chef_run.template '/etc/mysql/conf.d/innodb_tuning.cnf'
     file.should be_owned_by 'root', 'root'

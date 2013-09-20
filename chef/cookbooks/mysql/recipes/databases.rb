@@ -1,26 +1,19 @@
-execute "create database and user" do
-  command <<-EOC
-  DB="#{node[:base][:name]}"
-  USER="#{node[:base][:name]}"
-  PASS="vagrant"
+execute "create db" do
+  command "mysql -e 'create database #{node[:base][:name]}'"
+  not_if "mysql -e \"show databases\" | grep #{node[:base][:name]}"
+end
 
-  echo "user: $USER, db: $DB, pass: $PASS"
+execute "create db user" do
+  command "mysql -e 'grant all on #{node[:base][:name]}.* to #{node[:base][:name]}@\'%\' identified by \'vagrant\''"
+  not_if "mysql -e \"select * from mysql.user\" | grep % | grep vagrant"
+end
 
-  echo "create database $DB; grant all on $DB.* to $USER@'%' identified by '$PASS'; grant create view on $DB.* to $USER@'%' identified by '$PASS'; grant show view on $DB.* to $USER@'%' identified by '$PASS'" | mysql --defaults-file=/root/.my.cnf mysql
-  echo "server: localhost"
-  echo "database: $DB"
-  echo "db user:  $USER"
-  echo "db pass:  $PASS"
-  echo ""
-  echo ""
-  EOC
+execute "set db grants" do
+  command "mysql -e 'grant create view on #{node[:base][:name]}.* to #{node[:base][:name]}@\'%\' identified by \'vagrant\'; grant show view on #{node[:base][:name]}.* to #{node[:base][:name]}@\'%\' identified by \'vagrant\''"
   not_if "mysql -e \"select * from mysql.user\" | grep % | grep vagrant"
 end
 
 execute "allow remote access for mysql root user" do
-  command <<-EOC
-  echo "GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'vagrant' WITH GRANT OPTION;"  | mysql --defaults-file=/root/.my.cnf mysql
-  echo "FLUSH PRIVILEGES;"  | mysql --defaults-file=/root/.my.cnf mysql
-  EOC
+  command "mysql -e \"GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'vagrant' WITH GRANT OPTION;\""
   not_if "mysql -e \"select * from mysql.user\" | grep % | grep root"
 end

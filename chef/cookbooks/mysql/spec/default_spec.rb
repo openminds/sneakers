@@ -9,10 +9,6 @@ describe 'mysql::default' do
     chef_run.converge 'mysql::default'
   }
 
-  it 'sets mysql service' do
-    pending 'sets mysql service'
-  end
-
   it 'creates /var/cache/local/preseeding/mysql-server.seed' do
     file = chef_run.template '/var/cache/local/preseeding/mysql-server.seed'
     file.should be_owned_by 'root', 'root'
@@ -20,7 +16,7 @@ describe 'mysql::default' do
     file.should notify 'execute[preseed mysql-server]', :run
   end
 
-  it "installs mariadb-server-5.5" do
+  it 'installs mariadb-server-5.5' do
     chef_run.should install_package 'mariadb-server-5.5'
   end
 
@@ -34,5 +30,10 @@ describe 'mysql::default' do
 
   it 'includes recipe mysql::databases' do
     chef_run.should include_recipe 'mysql::databases'
+  end
+
+  it 'sets mysql service' do
+    chef_run.should set_service_to_start_on_boot 'mysql'
+    chef_run.should start_service 'mysql'
   end
 end
