@@ -35,4 +35,12 @@ apt_keys.each do |key, command|
   end
 end
 
+template '/etc/apt/preferences.d/dotdeb_php_pinning' do
+  source 'dotdeb_php_pinning.erb'
+  owner 'root'
+  group 'root'
+  mode '0644'
+  action :create
+end
+
 execute 'apt-get update -y'
