@@ -35,5 +35,5 @@ default[:apache][:security][:serversignature] = 'On'
 default[:apache][:security][:traceenable] = 'Off'
 
 default[:apache][:packages] = %w[ libcap2 apache2-mpm-worker libaprutil1-dbd-sqlite3 libaprutil1-dbd-mysql libaprutil1-dbd-odbc libaprutil1-dbd-pgsql libaprutil1-dbd-freetds libaprutil1-ldap libapache2-mod-rpaf apache2-suexec libapache2-mod-fastcgi ]
-default[:apache][:configs] = %w[ security ports nogit status fcgid ]
-default[:apache][:mods] = %w[ actions alias auth_basic authn_file authz_default authz_groupfile authz_host authz_user autoindex cgid deflate dir env expires fastcgi headers mime negotiation rewrite rpaf setenvif suexec fcgid ]
+default[:apache][:configs] = %w[ security ports nogit status ]
+default[:apache][:mods] = %w[ actions alias auth_basic authn_file authz_default authz_groupfile authz_host authz_user autoindex cgid deflate dir env expires fastcgi headers mime negotiation rewrite rpaf setenvif suexec ]
