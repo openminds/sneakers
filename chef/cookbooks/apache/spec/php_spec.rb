@@ -57,6 +57,14 @@ describe 'apache::php' do
     file.should notify 'service[php5-fpm]', :restart
   end
 
+  it 'sets fcgid in mods-available' do
+    file = chef_run.template '/etc/apache2/mods-available/fcgid.conf'
+    file.mode.should eq '0644'
+    file.should be_owned_by 'root', 'root'
+    file.should notify 'service[apache2]', :restart
+    file.should notify 'execute[a2enmod fcgid]', :run
+  end
+
   it 'creates /etc/php5/conf.d/20-apc.ini' do
     file = chef_run.template '/etc/php5/conf.d/20-apc.ini'
     file.should notify 'service[php5-fpm]', :restart

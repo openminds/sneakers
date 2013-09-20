@@ -27,7 +27,7 @@ describe 'apache::default' do
     file.should notify 'service[apache2]', :restart
   end
 
-  %w[ security ports nogit status fcgid ].each do |config|
+  %w[ security ports nogit status ].each do |config|
     it "sets apache configuration file for #{config}" do
       file = chef_run.template "/etc/apache2/conf.d/#{config}.conf"
       file.mode.should eq '0644'
@@ -36,7 +36,7 @@ describe 'apache::default' do
     end
   end
 
-  %w[ actions alias auth_basic authn_file authz_default authz_groupfile authz_host authz_user autoindex cgid deflate dir env expires fastcgi headers mime negotiation rewrite rpaf setenvif suexec fcgid ].each do |mod|
+  %w[ actions alias auth_basic authn_file authz_default authz_groupfile authz_host authz_user autoindex cgid deflate dir env expires fastcgi headers mime negotiation rewrite rpaf setenvif suexec ].each do |mod|
     it "enables module #{mod}" do
       chef_run.should execute_command "a2enmod #{mod}"
       command = chef_run.execute "a2enmod #{mod}"
