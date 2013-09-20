@@ -30,7 +30,7 @@ describe 'base::default' do
     file.mode.should eq '0644'
     file.should be_owned_by 'root', 'root'
     file.content.should eq "deb http://debs.openminds.be #{chef_run.node['lsb']['codename']} apache2"
-    file.should notify 'execute[apt-key openminds_apache]', :run
+    file.should notify 'execute[apt-key openminds_apache]', :run, :immediately
   end
 
   it 'creates /etc/apt/sources.list.d/nginx.list' do
@@ -38,7 +38,7 @@ describe 'base::default' do
     file.mode.should eq '0644'
     file.should be_owned_by 'root', 'root'
     file.content.should eq 'deb http://nginx.org/packages/debian squeeze nginx'
-    file.should notify 'execute[apt-key nginx]', :run
+    file.should notify 'execute[apt-key nginx]', :run, :immediately
   end
 
   it '/etc/apt/preferences.d/dotdeb_php_pinning' do
