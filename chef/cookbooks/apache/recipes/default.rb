@@ -1,76 +1,66 @@
-service "apache2" do
-  action :enable
-end
-
-# include_recipe "apt"
-
-# apt_repository "squeeze_openminds_apache" do
-#   uri "http://debs.openminds.be"
-#   distribution node['lsb']['codename']
-#   components ["apache2"]
-#   key "http://debs.openminds.be/debs.openminds.key"
-#   action :add
-# end
-
-%w[libcap2 apache2-mpm-worker libaprutil1-dbd-sqlite3 libaprutil1-dbd-mysql libaprutil1-dbd-odbc libaprutil1-dbd-pgsql libaprutil1-dbd-freetds libaprutil1-ldap libapache2-mod-rpaf apache2-suexec libapache2-mod-fastcgi].each do |pkg|
+node[:apache][:packages].each do |pkg|
   package pkg
 end
 
-template "/etc/apache2/apache2.conf" do
-  source "apache2.conf.erb"
-  owner "root"
-  group "root"
-  mode "0644"
-  notifies :restart, "service[apache2]"
+template '/etc/apache2/apache2.conf' do
+  source 'apache2.conf.erb'
+  owner 'root'
+  group 'root'
+  mode '0644'
+  notifies :restart, 'service[apache2]'
 end
 
-node['apache']['modules_enabled'].each do |mod|
-  apache_module mod
+node[:apache][:configs].each do |config|
+  template "/etc/apache2/conf.d/#{config}.conf" do
+    source "modules/#{config}.conf.erb"
+    owner 'root'
+    group 'root'
+    mode '0644'
+    notifies :restart, 'service[apache2]'
+  end
 end
 
-apache_configuration "security"
-apache_configuration "ports"
-apache_configuration "nogit"
-
-apache_configuration "fcgid" do
-  is_module true
+node[:apache][:mods].each do |mod|
+  execute "a2enmod #{mod}" do
+    notifies :restart, 'service[apache2]'
+  end
 end
 
-apache_module "status" do
-  use_custom_configuration true # make /server-status work with Drupal setups
+file '/usr/lib/apache2/suexec' do
+  mode '4750'
+  notifies :restart, 'service[apache2]'
 end
 
-apache_module "ssl"
-
-file "/usr/lib/apache2/suexec" do
-  mode "4750"
+cookbook_file 'apache2-logrotate' do
+  path '/etc/logrotate.d/apache2'
+  source 'apache2-logrotate'
 end
 
-cookbook_file "apache2-logrotate" do
-  path "/etc/logrotate.d/apache2"
-  source "apache2-logrotate"
-end
-
-directory "/home/vagrant/log/apache2/default" do
+directory '/home/vagrant/log/apache2/default' do
   recursive true
-  mode 0755
+  owner 'root'
+  group 'root'
+  mode '0755'
 end
 
-directory "/home/vagrant/error_document" do
-  owner "vagrant"
-  group "vagrant"
-  mode 00755
-  action :create
+directory '/home/vagrant/error_document' do
   recursive true
+  owner 'vagrant'
+  group 'vagrant'
+  mode '0755'
 end
 
-template "/home/vagrant/error_document/index.html" do
-  source "error.html.erb"
-  owner "vagrant"
-  group "vagrant"
+template '/home/vagrant/error_document/index.html' do
+  source 'error.html.erb'
+  owner 'vagrant'
+  group 'vagrant'
   variables(
     :app_directory => node[:base][:app_settings].app_directory.to_s,
     :app_name => node[:base][:name]
   )
-  mode 00644
+  mode '0644'
+end
+
+service 'apache2' do
+  action [ :enable, :start ]
 end
