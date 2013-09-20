@@ -13,22 +13,28 @@ describe 'nginx::proxy' do
     chef_run.converge 'nginx::proxy'
   }
 
+  it 'includes nginx::default' do
+    chef_run.should include_recipe 'nginx::default'
+  end
+
   it 'creates /etc/nginx/proxy_vhost.conf' do
     file = chef_run.cookbook_file '/etc/nginx/proxy_vhost.conf'
-    file.mode.should eq '0644'
     file.should be_owned_by 'root', 'root'
+    file.mode.should eq '0644'
+    file.should notify 'service[nginx]', :restart
   end
 
   it 'creates /etc/nginx/extra.d/proxy.conf' do
     file = chef_run.template '/etc/nginx/extra.d/proxy.conf'
-    file.mode.should eq '0644'
     file.should be_owned_by 'root', 'root'
+    file.mode.should eq '0644'
+    file.should notify 'service[nginx]', :restart
   end
 
   it 'creates /etc/nginx/conf.d/default.conf' do
     file = chef_run.template '/etc/nginx/conf.d/default.conf'
-    file.mode.should eq '0644'
     file.should be_owned_by 'root', 'root'
+    file.mode.should eq '0644'
     file.should notify 'service[nginx]', :restart
   end
 end

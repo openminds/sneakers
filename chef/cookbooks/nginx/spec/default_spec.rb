@@ -13,19 +13,20 @@ describe 'nginx::default' do
     chef_run.converge 'nginx::default'
   }
 
-  it 'sets service nginx with action nothing' do
-    pending 'service nginx'
-  end
-
-  it 'installs nginx' do
-    chef_run.should install_package 'nginx'
-  end
-
   it 'includes nginx::configuration' do
     chef_run.should include_recipe "nginx::configuration"
   end
 
   it 'includes nginx::proxy' do
     chef_run.should include_recipe "nginx::proxy"
+  end
+
+  it 'installs nginx' do
+    chef_run.should install_package 'nginx'
+  end
+
+  it 'sets service nginx with action nothing' do
+    chef_run.should set_service_to_start_on_boot 'nginx'
+    chef_run.should start_service 'nginx'
   end
 end
