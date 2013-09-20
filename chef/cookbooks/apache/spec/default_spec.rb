@@ -13,12 +13,7 @@ describe 'apache::default' do
     chef_run.converge 'apache::default'
   }
 
-  it 'sets apache2 service' do
-    chef_run.should set_service_to_start_on_boot 'apache2'
-    chef_run.should start_service 'apache2'
-  end
-
-  %w[libcap2 apache2-mpm-worker libaprutil1-dbd-sqlite3 libaprutil1-dbd-mysql libaprutil1-dbd-odbc libaprutil1-dbd-pgsql libaprutil1-dbd-freetds libaprutil1-ldap libapache2-mod-rpaf apache2-suexec libapache2-mod-fastcgi].each do |pkg|
+  %w[ libcap2 apache2-mpm-worker libaprutil1-dbd-sqlite3 libaprutil1-dbd-mysql libaprutil1-dbd-odbc libaprutil1-dbd-pgsql libaprutil1-dbd-freetds libaprutil1-ldap libapache2-mod-rpaf apache2-suexec libapache2-mod-fastcgi ].each do |pkg|
     it "installs #{pkg}" do
       chef_run.should install_package pkg
     end
@@ -32,9 +27,20 @@ describe 'apache::default' do
     file.should notify 'service[apache2]', :restart
   end
 
-  ["actions","alias","auth_basic","authn_file","authz_default","authz_groupfile","authz_host","authz_user","autoindex","cgid","deflate","dir","env","expires","fastcgi","headers","mime","negotiation","rewrite","rpaf","setenvif","suexec", 'security', 'ports', 'nogit', 'fcgid', 'status', 'ssl'].each do |mod|
-    it "installs mod #{mod}" do
-      pending "installs #{mod}"
+  %w[ security ports nogit status fcgid ].each do |config|
+    it "sets apache configuration file for #{config}" do
+      file = chef_run.template "/etc/apache2/conf.d/#{config}.conf"
+      file.mode.should eq '0644'
+      file.should be_owned_by 'root', 'root'
+      file.should notify 'service[apache2]', :restart
+    end
+  end
+
+  %w[ actions alias auth_basic authn_file authz_default authz_groupfile authz_host authz_user autoindex cgid deflate dir env expires fastcgi headers mime negotiation rewrite rpaf setenvif suexec fcgid ].each do |mod|
+    it "enables module #{mod}" do
+      chef_run.should execute_command "a2enmod #{mod}"
+      command = chef_run.execute "a2enmod #{mod}"
+      command.should notify 'service[apache2]', :restart
     end
   end
 
@@ -51,13 +57,14 @@ describe 'apache::default' do
   it 'creates directory /home/vagrant/log/apache2/default' do
     chef_run.should create_directory '/home/vagrant/log/apache2/default'
     directory = chef_run.directory '/home/vagrant/log/apache2/default'
-    directory.mode.should eq 0755
+    directory.mode.should eq '0755'
+    directory.should be_owned_by 'root', 'root'
   end
 
   it 'creates directory /home/vagrant/error_document' do
     chef_run.should create_directory '/home/vagrant/error_document'
     directory = chef_run.directory '/home/vagrant/error_document'
-    directory.mode.should eq 00755
+    directory.mode.should eq '0755'
     directory.should be_owned_by 'vagrant', 'vagrant'
     directory.recursive.should eq true
   end
@@ -66,6 +73,10 @@ describe 'apache::default' do
     chef_run.should create_file '/home/vagrant/error_document/index.html'
     file = chef_run.template '/home/vagrant/error_document/index.html'
     file.should be_owned_by 'vagrant', 'vagrant'
-    file.mode.should eq 00644
+    file.mode.should eq '0644'
+  end
+
+  it 'sets apache2 service' do
+    chef_run.should set_service_to_start_on_boot 'apache2'
   end
 end

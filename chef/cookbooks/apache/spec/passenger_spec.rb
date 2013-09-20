@@ -14,22 +14,26 @@ describe 'apache::passenger' do
     chef_run.converge 'apache::passenger'
   }
 
-  it 'installs passenger gem' do
-    chef_run.should install_gem_package 'passenger'
+  it 'includes apache::default recipe' do
+    chef_run.should include_recipe "apache::default"
   end
 
-  %w[libapr1-dev libaprutil1-dev libpq5 libcurl4-openssl-dev libxslt1-dev libxml2-dev apache2-prefork-dev dpatch libpcre3-dev sharutils libqt4-sql-sqlite libsqlite3-0 libsqlite3-dev].each do |pkg|
+  %w[ libapr1-dev libaprutil1-dev libpq5 libcurl4-openssl-dev libxslt1-dev libxml2-dev apache2-prefork-dev dpatch libpcre3-dev sharutils libqt4-sql-sqlite libsqlite3-0 libsqlite3-dev ].each do |pkg|
     it "installs #{pkg}" do
       chef_run.should install_package pkg
     end
   end
 
-  it 'installs passenger sqlite3' do
-    chef_run.should install_gem_package 'sqlite3'
+  it 'installs passenger gem' do
+    chef_run.should install_gem_package 'passenger'
   end
 
-  it 'install libpq-dev' do
-    chef_run.should install_package 'libpq-dev'
+  it 'should install bundler' do
+    chef_run.should install_gem_package 'bundler'
+  end
+
+  it 'installs passenger sqlite3' do
+    chef_run.should install_gem_package 'sqlite3'
   end
 
   it 'should execute passenger-install-apache2-module' do
@@ -54,10 +58,6 @@ describe 'apache::passenger' do
     chef_run.should execute_command 'a2enmod passenger'
     exec = chef_run.execute 'a2enmod passenger'
     exec.should notify 'service[apache2]', :restart
-  end
-
-  it 'should install bundler' do
-    chef_run.should install_gem_package 'bundler'
   end
 
   it 'creates /etc/apache2/sites-available/default' do
