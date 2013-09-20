@@ -24,7 +24,7 @@ repositories.each do |key, value|
     group 'root'
     mode '0644'
     content value
-    notifies :run, "execute[apt-key #{key}]" if apt_keys.include? key
+    notifies :run, "execute[apt-key #{key}]", :immediately if apt_keys.include? key
   end
 end
 
