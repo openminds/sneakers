@@ -54,7 +54,7 @@ Vagrant::Config.run do |config|
         when "ruby193"
           chef.add_recipe "apache::passenger"
         else
-          raise "Unknown type of server. Needs to be php53, ruby193, ... Please RTFM."
+          raise "Unknown type of server. Needs to be php53, ruby193, ... Please consult the README."
         end
         ## Enable for Chef development:
         # chef.add_recipe "chef_handler"
