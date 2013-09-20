@@ -30,8 +30,8 @@ describe 'phpmyadmin::default' do
   it 'creates directory /home/phpmyadmin/default_www' do
     chef_run.should create_directory '/home/phpmyadmin/default_www'
     directory = chef_run.directory '/home/phpmyadmin/default_www'
-    directory.mode.should eq '0755'
     directory.should be_owned_by 'phpmyadmin', 'phpmyadmin'
+    directory.mode.should eq '0755'
   end
 
   it 'extracts phpmyadmin' do
