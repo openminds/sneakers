@@ -41,6 +41,12 @@ describe 'base::default' do
     file.should notify 'execute[apt-key nginx]', :run
   end
 
+  it '/etc/apt/preferences.d/dotdeb_php_pinning' do
+    file = chef_run.template '/etc/apt/preferences.d/dotdeb_php_pinning'
+    file.should be_owned_by 'root', 'root'
+    file.mode.should eq '0644'
+  end
+
   it 'runs apt-get update' do
     chef_run.should execute_command 'apt-get update -y'
   end
