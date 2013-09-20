@@ -35,5 +35,6 @@ describe 'base::default' do
 
   it 'sets postfix service' do
     chef_run.should set_service_to_start_on_boot 'postfix'
+    chef_run.should start_service 'postfix'
   end
 end
