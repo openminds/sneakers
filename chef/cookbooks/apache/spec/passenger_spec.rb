@@ -3,7 +3,12 @@ require 'spec_helper'
 describe 'apache::passenger' do
   let(:chef_run) {
     chef_run = ChefSpec::ChefRunner.new(platform:'debian', version:'6.0.5') do |node|
-    	node.set[:base][:app_settings] = {"app_directory"=>"/Users/zhann/Desktop/app1", "type"=>"php53", "http_port"=>8010, "memory"=>1024}
+      node.set[:base][:app_settings] = {
+        app_directory: '/Users/zhann/Desktop/app1',
+        type: 'php53',
+        http_port: 8010,
+        memory: 1024
+      }
       node.set[:apache][:passenger][:snippet] = 'foo'
     end
     chef_run.converge 'apache::passenger'
