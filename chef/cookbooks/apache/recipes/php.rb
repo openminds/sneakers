@@ -37,15 +37,6 @@ cookbook_file '/etc/php5/fpm/pool.d/vagrant.conf' do
   notifies :restart, 'service[php5-fpm]'
 end
 
-template '/etc/apache2/mods-available/fcgid.conf' do
-  source 'modules/fcgid.conf.erb'
-  owner 'root'
-  group 'root'
-  mode '0644'
-  notifies :restart, 'service[apache2]'
-  notifies :run, 'execute[a2enmod fcgid]'
-end
-
 template '/etc/php5/conf.d/20-apc.ini' do
   source 'apc.ini.erb'
   mode '0644'
@@ -69,11 +60,6 @@ end
     mode '0644'
     notifies :restart, 'service[php5-fpm]'
   end
-end
-
-execute 'a2enmod fcgid' do
-  notifies :restart, 'service[apache2]'
-  action :nothing
 end
 
 execute 'install drush' do
