@@ -10,6 +10,7 @@ describe 'mysql::databases' do
         memory: 1024
       }
       node.set[:base][:name] = 'test'
+      node.set[:memory][:total] = 1024
     end
     chef_run.converge 'mysql::databases'
   }
