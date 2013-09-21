@@ -24,7 +24,7 @@ describe 'phpmyadmin::default' do
   end
 
   it 'downloads phpmyadmin' do
-    chef_run.should create_remote_file '/tmp/phpMyAdmin-all-languages.tar.bz2'
+    chef_run.should create_remote_file chef_run.node[:phpmyadmin][:tmp_path]
   end
 
   it 'creates directory /home/phpmyadmin/default_www' do
@@ -35,7 +35,7 @@ describe 'phpmyadmin::default' do
   end
 
   it 'extracts phpmyadmin' do
-    chef_run.should execute_command 'tar xf /tmp/phpMyAdmin-all-languages.tar.bz2 -C /home/phpmyadmin/default_www; chown -Rf phpmyadmin:phpmyadmin /home/phpmyadmin/default_www'
+    chef_run.should execute_command "tar xf #{chef_run.node[:phpmyadmin][:tmp_path]} -C /home/phpmyadmin/default_www; chown -Rf phpmyadmin:phpmyadmin /home/phpmyadmin/default_www"
   end
 
   it 'deletes directory /home/phpmyadmin/default_www/setup' do

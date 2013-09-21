@@ -14,7 +14,7 @@ template '/var/cache/local/preseeding/mysql-server.seed' do
   owner 'root'
   group 'root'
   mode '0600'
-  notifies :run, resources(:execute => 'preseed mysql-server'), :immediately
+  notifies :run, 'execute[preseed mysql-server]', :immediately
 end
 
 package 'mariadb-server-5.5'

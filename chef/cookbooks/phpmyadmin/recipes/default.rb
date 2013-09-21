@@ -10,7 +10,8 @@ directory '/home/phpmyadmin/' do
   group 'phpmyadmin'
 end
 
-remote_file '/tmp/phpMyAdmin-all-languages.tar.bz2' do
+remote_file "phpMyAdmin-all-languages.tar.bz2" do
+  path node[:phpmyadmin][:tmp_path]
   source 'http://november.openminds.be/~steven/phpMyAdmin-3.5.4-all-languages.tar.bz2'
   not_if { ::File.exists? '/tmp/phpMyAdmin-all-languages.tar.bz2' }
 end
@@ -22,7 +23,7 @@ directory '/home/phpmyadmin/default_www' do
 end
 
 execute 'extract phpmyadmin' do
-  command 'tar xf /tmp/phpMyAdmin-all-languages.tar.bz2 -C /home/phpmyadmin/default_www; chown -Rf phpmyadmin:phpmyadmin /home/phpmyadmin/default_www'
+  command "tar xf #{node[:phpmyadmin][:tmp_path]} -C /home/phpmyadmin/default_www; chown -Rf phpmyadmin:phpmyadmin /home/phpmyadmin/default_www"
   not_if 'test -f /home/phpmyadmin/default_www/config.inc.php'
 end
 
