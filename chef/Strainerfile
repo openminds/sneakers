@@ -1,0 +1,5 @@
+# Strainerfile
+knife test: bundle exec knife cookbook test $COOKBOOK
+foodcritic: bundle exec foodcritic -f any $SANDBOX/$COOKBOOK
+chefspec: cd $SANDBOX && bundle exec rspec --color $SANDBOX/$COOKBOOK
+
