@@ -11,25 +11,25 @@ repositories = {
   'mariadb' => 'deb http://mirror2.hs-esslingen.de/mariadb/repo/5.5/debian squeeze main'
 }
 
-apt_keys = {
+repository_keys = {
   'openminds_apache' => 'wget -qO - http://debs.openminds.be/debs.openminds.key | apt-key add -',
   'nginx' => 'wget -qO - http://nginx.org/packages/keys/nginx_signing.key | apt-key add -',
   'dotdeb' => 'wget -qO - http://www.dotdeb.org/dotdeb.gpg | apt-key add -',
   'mariadb' => 'apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 1BB943DB'
 }
 
-repositories.each do |key, value|
-  file "/etc/apt/sources.list.d/#{key}.list" do
+repositories.each do |repository, value|
+  file "/etc/apt/sources.list.d/#{repository}.list" do
     owner 'root'
     group 'root'
     mode '0644'
     content value
-    notifies :run, "execute[apt-key #{key}]", :immediately if apt_keys.include? key
+    notifies :run, "execute[apt-key #{repository}]", :immediately if repository_keys.include? repository
   end
 end
 
-apt_keys.each do |key, command|
-  execute "apt-key #{key}" do
+repository_keys.each do |repository, command|
+  execute "apt-key #{repository}" do
     command command
     action :nothing
   end
