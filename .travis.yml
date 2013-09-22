@@ -2,7 +2,7 @@ language: ruby
 rvm:
   - "1.9.3"
 gemfile: chef/Gemfile
-script: "cd chef && bundle exec strainer test `cd cookbooks ; for i in $(ls -d */); do echo ${${i%/}%/}; done`"
+script: "cd chef && bundle exec rspec cookbooks/*/spec && bundle exec strainer test apache base extra mysql nginx phpmyadmin"
 notifications:
   hipchat:
     secure: "fc83ADKuybtqxQc/844f1f5XUz9VUmKPVxtAPZ1Pi7YEB4tPrc7alJ2U01qP8q1Yufb8Xrv/ZJQ1daY4JWtKnRHWBlNUHVtOYVSrVTnQwUytlG5NvEu0XWNTz08r/wVFchmG3liQ8xwsjNa2Z7zHGJ5Xn8bLYx0cm//oBO04zBk="
