@@ -57,8 +57,8 @@ describe 'apache::php' do
     file.should notify 'service[php5-fpm]', :restart
   end
 
-  it 'creates /etc/php5/conf.d/20-apc.ini' do
-    file = chef_run.template '/etc/php5/conf.d/20-apc.ini'
+  it 'creates /etc/php5/conf.d/apc.ini' do
+    file = chef_run.template '/etc/php5/conf.d/apc.ini'
     file.should notify 'service[php5-fpm]', :restart
   end
 

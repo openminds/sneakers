@@ -37,7 +37,7 @@ cookbook_file '/etc/php5/fpm/pool.d/vagrant.conf' do
   notifies :restart, 'service[php5-fpm]'
 end
 
-template '/etc/php5/conf.d/20-apc.ini' do
+template '/etc/php5/conf.d/apc.ini' do
   source 'apc.ini.erb'
   mode '0644'
   notifies :restart, 'service[php5-fpm]'
