@@ -48,13 +48,13 @@ Copy the config file:
 Edit the config file to represent your apps. You can add as many as you want (as long as your physical memory permits it), this example has two apps:
 
     myapp:
-      app_directory: "/Users/steven/Developer/myapp"
+      app_directory: "/Users/steven/Developer/myapp/"
       type: "php54"
       http_port: 9000
       memory: 1024
 
     myotherapp:
-      app_directory: "/Users/steven/Developer/myotherapp"
+      app_directory: "/Users/steven/Developer/myotherapp/"
       type: "ruby193"
       http_port: 9001
       memory: 1024
@@ -70,7 +70,7 @@ Edit the config file to represent your apps. You can add as many as you want (as
  * _mysql_port_: enables port forwarding to the mysql port, to the port specified
  * _documentroot_suffix_: sets documentroot suffix, for when your application is in a subdirectory of the shared folder.
  * _php_xdebug_: enables [xdebug](http://xdebug.org/) support for php
- * _nfs_: enables [NFS](http://en.wikipedia.org/wiki/Network_File_System) support. This allows faster file sharing than the basic file sharing. NFS is not supported on Windows hosts.
+ * _nfs_: enables [NFS](http://en.wikipedia.org/wiki/Network_File_System) support. This allows faster file sharing than the basic file sharing. NFS is not supported on Windows hosts. **Make sure your app_directory has a trailing slash, or NFS mount will fail!**
  * _ip_: sets custom IP.
  * _wkhtmltopdf_: enables [wkhtmltopdf](https://code.google.com/p/wkhtmltopdf/) support
  * _memcached_: enables [memcached](http://memcached.org/) support
@@ -130,6 +130,10 @@ Please submit issues through Github 'issues', or mail us at support@openminds.be
  * Capistrano deploy.rb config generator
 
 ## Known Issues
+
+### requested NFS version or transport protocol is not supported
+
+This is a weird one. Make sure your app_directory has a trailing slash! So `/home/user/app/` and not `/home/user/app`.
 
 ### If your run is stuck on `waiting for vm to boot`
 
