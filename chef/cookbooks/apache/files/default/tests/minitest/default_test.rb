@@ -1,6 +1,6 @@
 class TestApache2 < MiniTest::Chef::TestCase
   def test_that_the_repository_is_added
-    assert File.exists?("/etc/apt/sources.list.d/squeeze_openminds_apache.list")
+    assert File.exists?("/etc/apt/sources.list.d/openminds_apache.list")
   end
 
   def test_that_the_config_file_is_added
@@ -15,7 +15,7 @@ class TestApache2 < MiniTest::Chef::TestCase
   end
 
   def test_that_modules_are_enabled
-    node[:apache][:modules_enabled].each do |mod|
+    node[:apache][:mods].each do |mod|
       assert system("apache2ctl -M | grep #{mod}_module")
     end
   end
