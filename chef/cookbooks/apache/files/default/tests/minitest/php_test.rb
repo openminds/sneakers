@@ -1,13 +1,7 @@
 class TestPhp < MiniTest::Chef::TestCase
   def test_that_the_repository_is_added
-    case node[:php][:version]
-    when "php54"
-      assert File.exists?("/etc/apt/sources.list.d/dotdeb-php54.list")
-      assert File.exists?("/etc/apt/sources.list.d/dotdeb.list")
-      assert File.exists?("/etc/apt/preferences.d/dotdeb_php_pinning")
-    else
-      assert File.exists?("/etc/apt/sources.list.d/dotdeb.list")
-    end
+    assert File.exists?("/etc/apt/sources.list.d/dotdeb.list")
+    assert File.exists?("/etc/apt/preferences.d/dotdeb_php_pinning")
   end
 
   def test_that_the_config_files_are_added
