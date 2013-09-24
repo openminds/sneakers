@@ -1,10 +1,11 @@
-node.override[:php][:html_errors] = "On"
+include_recipe "apache::php"
 
-package "php5-xdebug"
+node.override[:php][:html_errors] = 'On'
 
-template "/etc/php5/mods-available/xdebug.ini" do
-  mode "0644"
-  variables(
-    :params => node['xdebug']
-  )
+package 'php5-xdebug'
+
+template '/etc/php5/mods-available/xdebug.ini' do
+  mode '0644'
+  variables params: node[:xdebug]
+  notifies :restart, "service[php5-fpm]"
 end

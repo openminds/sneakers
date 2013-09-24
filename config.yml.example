@@ -1,13 +1,13 @@
 # example app on Linux or OS X
 app1:
-  app_directory: "/Users/name/Developer/boxersapp1"
+  app_directory: "/Users/name/Developer/boxersapp1/"
   type: "php53"
   http_port: 8010
   memory: 512
 
 # example app with custom documentroot suffix and mysql port forwarding
 app2:
-  app_directory: "/Users/name/Developer/boxersapp1"
+  app_directory: "/Users/name/Developer/boxersapp1/"
   type: "php53"
   http_port: 8010
   memory: 512
@@ -16,14 +16,14 @@ app2:
 
 # example app on Windows
 app3:
-  app_directory: "C:/Users/username/Desktop"
+  app_directory: "C:/Users/username/Desktop/"
   type: "php54"
   http_port: 8020
   memory: 512
 
 # example app with faster NFS share and xdebug
 app4:
-  app_directory: "/Users/name/Developer/boxersapp3"
+  app_directory: "/Users/name/Developer/boxersapp3/"
   type: "php54"
   http_port: 8030
   memory: 1024

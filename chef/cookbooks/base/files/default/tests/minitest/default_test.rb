@@ -1,6 +1,6 @@
 class TestBase < MiniTest::Chef::TestCase
   def test_that_the_om_repository_is_added
-    assert File.exists?("/etc/apt/sources.list.d/squeeze_mirror_openminds_be.list")
+    assert File.exists?("/etc/apt/sources.list.d/openminds_apache.list")
   end
 
     def test_that_the_security_repository_is_added

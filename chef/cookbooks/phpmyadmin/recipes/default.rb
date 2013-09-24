@@ -1,52 +1,42 @@
-include_recipe "apache"
-include_recipe "apache::php"
+latest_version = '3.5.4'
 
-
-latest_version = "3.5.4"
-
-if (%x[egrep -i "^phpmyadmin" /etc/group].empty? == true) && (%x[grep phpmyadmin /etc/group].empty? == false)
-  raise "phpmyadmin cookbook was refactored. Please do `deluser phpmyadmin` and rerun OR remove phpmyadmin cookbook from runlist. -Steven"
+user 'phpmyadmin' do
+  comment 'phpmyadmin'
+  shell '/bin/false'
 end
 
-user "phpmyadmin" do
-  comment "phpmyadmin"
-  shell "/bin/false"
+directory '/home/phpmyadmin/' do
+  owner 'phpmyadmin'
+  group 'phpmyadmin'
 end
 
-directory "/home/phpmyadmin/" do
-  owner "phpmyadmin"
-  group "phpmyadmin"
+remote_file "phpMyAdmin-all-languages.tar.bz2" do
+  path node[:phpmyadmin][:tmp_path]
+  source 'http://november.openminds.be/~steven/phpMyAdmin-3.5.4-all-languages.tar.bz2'
+  not_if { ::File.exists? '/tmp/phpMyAdmin-all-languages.tar.bz2' }
+end
+
+directory '/home/phpmyadmin/default_www' do
+  owner 'phpmyadmin'
+  group 'phpmyadmin'
+  mode '0755'
+end
+
+execute 'extract phpmyadmin' do
+  command "tar xf #{node[:phpmyadmin][:tmp_path]} -C /home/phpmyadmin/default_www; chown -Rf phpmyadmin:phpmyadmin /home/phpmyadmin/default_www"
+  not_if 'test -f /home/phpmyadmin/default_www/config.inc.php'
+end
+
+directory '/home/phpmyadmin/default_www/setup' do
   recursive true
+  action :delete
 end
 
-remote_file "/tmp/phpMyAdmin-all-languages.tar.bz2" do
-  source "http://november.openminds.be/~steven/phpMyAdmin-3.5.4-all-languages.tar.bz2"
-  not_if { ::File.exists? "/tmp/phpMyAdmin-all-languages.tar.bz2" }
-end
-
-directory "/home/phpmyadmin/default_www" do
-  owner "phpmyadmin"
-  group "phpmyadmin"
-  mode 00755
-  action :create
-end
-
-execute "extract phpmyadmin" do
-  command "tar xf /tmp/phpMyAdmin-all-languages.tar.bz2 -C /home/phpmyadmin/default_www; chown -Rf phpmyadmin:phpmyadmin /home/phpmyadmin/default_www"
-  not_if "test -f /home/phpmyadmin/default_www/config.inc.php"
-end
-
-directory "/home/phpmyadmin/default_www/setup" do
-  recursive true
-  action :delete #setup is dangerous, remove if found!
-end
-
-template "config.inc.php" do
-  path "/home/phpmyadmin/default_www/config.inc.php"
-  source "config.inc.php.erb"
-  variables(
-  :hash => Digest::SHA1.hexdigest((node[:hostname]+node[:ipaddress]).to_s)
-  )
-  owner "phpmyadmin"
-  mode "0644"
+template 'config.inc.php' do
+  path '/home/phpmyadmin/default_www/config.inc.php'
+  source 'config.inc.php.erb'
+  owner 'phpmyadmin'
+  group 'phpmyadmin'
+  mode '0644'
+  variables hash: Digest::SHA1.hexdigest((node[:hostname]+node[:ipaddress]).to_s)
 end

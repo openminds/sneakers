@@ -1,19 +1,15 @@
 class TestPhp < MiniTest::Chef::TestCase
   def test_that_the_repository_is_added
-    case node[:php][:version]
-    when "php54"
-      assert File.exists?("/etc/apt/sources.list.d/dotdeb-php54.list")
-      assert File.exists?("/etc/apt/sources.list.d/dotdeb.list")
-      assert File.exists?("/etc/apt/preferences.d/dotdeb_php_pinning")
-    else
-      assert File.exists?("/etc/apt/sources.list.d/dotdeb.list")
-    end
+    assert File.exists?("/etc/apt/sources.list.d/dotdeb.list")
+    assert File.exists?("/etc/apt/preferences.d/dotdeb_php_pinning")
   end
 
   def test_that_the_config_files_are_added
     assert File.exists?("/etc/php5/cli/php.ini")
     assert File.exists?("/etc/php5/fpm/php.ini")
-    assert File.exists?("/etc/php5/conf.d/20-apc.ini")
+    assert File.exists?("/etc/php5/mods-available/apc.ini")
+    # Check if APC symlink exists
+    assert !Dir['/etc/php5/conf.d/*'].select {|x| x =~ /\/([0-9]+-)?apc\.ini$/ }.empty?
   end
 
   def test_that_the_packages_are_installed

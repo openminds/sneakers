@@ -22,11 +22,13 @@ Vagrant::Config.run do |config|
           vb.customize ["modifyvm", :id, "--memory", "#{box['memory']}"]
         end
       end
-      node.vm.box = "sneakers-6.0.7-20130805"
-      node.vm.box_url = 'http://mirror.openminds.be/vagrant-boxes/sneakers-6.0.7-20130805.box'
+      node.vm.box = "sneakers-6.0.7-#{box['type']}-20130911"
+      node.vm.box_url = "http://mirror.openminds.be/vagrant-boxes/sneakers-6.0.7-#{box['type']}-20130911.box"
       node.vm.share_folder "apps", "/home/vagrant/apps/default", box['app_directory'], :nfs => box['nfs']
 
       node.vm.provision :chef_solo do |chef|
+        chef.log_level = :auto
+
         chef.cookbooks_path = "chef/cookbooks"
         chef.roles_path = "chef/roles"
 
@@ -54,7 +56,7 @@ Vagrant::Config.run do |config|
         when "ruby193"
           chef.add_recipe "apache::passenger"
         else
-          raise "Unknown type of server. Needs to be php53, ruby193, ... Please RTFM."
+          raise "Unknown type of server. Needs to be php53, ruby193, ... Please consult the README."
         end
         ## Enable for Chef development:
         # chef.add_recipe "chef_handler"
