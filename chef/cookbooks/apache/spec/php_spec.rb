@@ -26,6 +26,14 @@ describe 'apache::php' do
     end
   end
 
+  it 'creates directory /etc/php5/mods-available' do
+    chef_run.should create_directory '/etc/php5/mods-available'
+    directory = chef_run.directory '/etc/php5/mods-available'
+    directory.mode.should eq '0755'
+    directory.should be_owned_by 'root', 'root'
+    directory.recursive.should eq true
+  end
+
   it 'deletes /etc/php5/conf.d/suhosin.ini' do
     chef_run.should delete_file '/etc/php5/conf.d/suhosin.ini'
   end
@@ -57,8 +65,8 @@ describe 'apache::php' do
     file.should notify 'service[php5-fpm]', :restart
   end
 
-  it 'creates /etc/php5/conf.d/apc.ini' do
-    file = chef_run.template '/etc/php5/conf.d/apc.ini'
+  it 'creates /etc/php5/mods-available/apc.ini' do
+    file = chef_run.template '/etc/php5/mods-available/apc.ini'
     file.should notify 'service[php5-fpm]', :restart
   end
 

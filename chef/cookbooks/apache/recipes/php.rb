@@ -4,6 +4,14 @@ node[:php][:packages].each do |pkg|
   package pkg
 end
 
+directory '/etc/php5/mods-available' do
+  owner 'root'
+  group 'root'
+  mode  '0755'
+  recursive true
+  action :create
+end
+
 file '/etc/php5/conf.d/suhosin.ini' do
   action :delete
 end
@@ -37,7 +45,7 @@ cookbook_file '/etc/php5/fpm/pool.d/vagrant.conf' do
   notifies :restart, 'service[php5-fpm]'
 end
 
-template '/etc/php5/conf.d/apc.ini' do
+template '/etc/php5/mods-available/apc.ini' do
   source 'apc.ini.erb'
   mode '0644'
   notifies :restart, 'service[php5-fpm]'

@@ -7,7 +7,9 @@ class TestPhp < MiniTest::Chef::TestCase
   def test_that_the_config_files_are_added
     assert File.exists?("/etc/php5/cli/php.ini")
     assert File.exists?("/etc/php5/fpm/php.ini")
-    assert File.exists?("/etc/php5/conf.d/apc.ini")
+    assert File.exists?("/etc/php5/mods-available/apc.ini")
+    # Check if APC symlink exists
+    assert !Dir['/etc/php5/conf.d/*'].select {|x| x =~ /\/([0-9]+-)?apc\.ini$/ }.empty?
   end
 
   def test_that_the_packages_are_installed

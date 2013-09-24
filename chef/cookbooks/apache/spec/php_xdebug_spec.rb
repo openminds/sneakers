@@ -16,14 +16,6 @@ describe 'apache::php_xdebug' do
     chef_run.should install_package 'php5-xdebug'
   end
 
-  it 'creates directory /etc/php5/mods-available' do
-    chef_run.should create_directory '/etc/php5/mods-available'
-    directory = chef_run.directory '/etc/php5/mods-available'
-    directory.mode.should eq '0755'
-    directory.should be_owned_by 'root', 'root'
-    directory.recursive.should eq true
-  end
-
   it 'creates /etc/php5/mods-available/xdebug.ini' do
     file = chef_run.template '/etc/php5/mods-available/xdebug.ini'
     file.should notify 'service[php5-fpm]', :restart
