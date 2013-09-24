@@ -1,0 +1,14 @@
+source "https://rubygems.org"
+
+ruby '1.9.3'
+
+gem 'chef'
+gem 'chefspec', github: 'acrmp/chefspec'
+gem 'fauxhai', github: 'customink/fauxhai'
+gem 'foodcritic'
+gem 'guard'
+gem 'guard-bundler'
+gem 'guard-rspec'
+gem 'rb-fsevent'
+gem 'strainer'
+gem 'terminal-notifier-guard'
