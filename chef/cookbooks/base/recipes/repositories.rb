@@ -7,7 +7,7 @@ repositories = {
   'squeeze_security' => 'deb http://security.debian.org squeeze/updates main contrib non-free',
   'openminds_apache' => 'deb http://debs.openminds.be squeeze apache2',
   'nginx' => 'deb http://nginx.org/packages/debian squeeze nginx',
-  'dotdeb' => "deb http://packages.dotdeb.org squeeze#{node[:php] && node[:php][:version] == 'php54' ? '-php54' : ''} all",
+  'dotdeb' => "deb http://packages.dotdeb.org squeeze all",
   'mariadb' => 'deb http://mirror2.hs-esslingen.de/mariadb/repo/5.5/debian squeeze main'
 }
 
@@ -26,6 +26,15 @@ repositories.each do |repository, value|
     content value
     notifies :run, "execute[apt-key #{repository}]", :immediately if repository_keys.include? repository
   end
+end
+
+file '/etc/apt/sources.list.d/dotdeb-php54.list' do
+  owner 'root'
+  group 'root'
+  mode '0644'
+  content 'deb http://packages.dotdeb.org squeeze-php54 all'
+  notifies :run, "execute[apt-key dotdeb]", :immediately
+  only_if { node[:php][:version] == 'php54' }
 end
 
 repository_keys.each do |repository, command|
