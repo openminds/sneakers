@@ -37,9 +37,9 @@ Clone this repository:
 
     git clone git://github.com/openminds/sneakers.git
 
-Make sure all submodules are up-to-date:
+Change directory:
 
-    git submodule update --init
+    cd sneakers
 
 Copy the config file:
 
@@ -83,7 +83,7 @@ To start a VM:
 
     vagrant up myapp
 
-(make sure to specify the app name, or you will start _all_ VM's)
+(Replace `myapp` with the name of the app you wish to start. Make sure to specify an app name, or you will start _all_ VM's)
 
 To stop a VM:
 
