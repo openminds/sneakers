@@ -148,3 +148,7 @@ Change `node.vm.box` and `node.vm.box_url` in Vagrantfile to:
 
     node.vm.box = "Debian-6.0.7-i386-ruby1.9.3-frank"
     node.vm.box_url = 'http://mirror.openminds.be/vagrant-boxes/Debian-6.0.7-i386-ruby1.9.3-frank.box'
+
+## Contributing
+
+Please consult [CONTRIBUTING.md](https://github.com/openminds/sneakers/blob/master/CONTRIBUTING.md).
