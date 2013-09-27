@@ -6,7 +6,7 @@
 
 ## Description
 
-Sneakers is a simple, fast way to mimick Openminds Shared and Cloud hosting environments. We do this using vagrant/virtualbox provisioned by Chef.
+Sneakers is a simple, fast way to mimic Openminds Shared and Cloud hosting environments. We do this using vagrant/virtualbox provisioned by Chef.
 You can develop your websites and test it straight on the VM (Virtual Machine) without the need for deploying or doing complex tasks.
 If your website works in our Sneakers, it should work on our production servers.
 
@@ -126,7 +126,7 @@ Please submit issues through Github 'issues', or mail us at support@openminds.be
 
 ## Todo's
 
- * Mimick Shared Varnish
+ * Mimic Shared Varnish
  * Capistrano deploy.rb config generator
 
 ## Known Issues
