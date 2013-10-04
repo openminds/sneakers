@@ -52,6 +52,7 @@ Vagrant::Config.run do |config|
         when /^php5[3|4]$/
           chef.add_recipe "apache::php"
           chef.json.merge!(:php => {:version => box['type'] })
+          chef.json.merge!(:php => {:memory_limit => box['php_memory_limit'] }) if box['php_memory_limit']
           chef.add_recipe "apache::php_xdebug" if box['php_xdebug']
         when "ruby193"
           chef.add_recipe "apache::passenger"
