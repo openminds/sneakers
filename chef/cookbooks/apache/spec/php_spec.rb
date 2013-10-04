@@ -61,7 +61,7 @@ describe 'apache::php' do
   end
 
   it "creates /etc/php5/fpm/pool.d/vagrant.conf" do
-    file = chef_run.cookbook_file "/etc/php5/fpm/pool.d/vagrant.conf"
+    file = chef_run.template "/etc/php5/fpm/pool.d/vagrant.conf"
     file.should notify 'service[php5-fpm]', :restart
   end
 
