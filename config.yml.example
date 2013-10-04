@@ -14,12 +14,13 @@ app2:
   documentroot_suffix: "public_html"
   mysql_port: 9010
 
-# example app on Windows
+# example app on Windows with php memory_limit
 app3:
   app_directory: "C:/Users/username/Desktop/"
   type: "php54"
   http_port: 8020
   memory: 512
+  php_memory_limit: "256M"
 
 # example app with faster NFS share and xdebug
 app4:
