@@ -40,8 +40,8 @@ file '/etc/apache2/conf.d/php-fpm-fcgi-servers' do
   notifies :restart, 'service[apache2]'
 end
 
-cookbook_file '/etc/php5/fpm/pool.d/vagrant.conf' do
-  source 'fpm-pool.conf'
+template '/etc/php5/fpm/pool.d/vagrant.conf' do
+  source 'fpm-pool.conf.erb'
   notifies :restart, 'service[php5-fpm]'
 end
 
