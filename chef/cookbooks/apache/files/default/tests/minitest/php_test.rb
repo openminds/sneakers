@@ -39,6 +39,10 @@ class TestPhp < MiniTest::Chef::TestCase
     end
   end
 
+  def test_that_php_has_correct_memory_limit
+    assert system("grep #{node[:php][:memory_limit]} /etc/php5/fpm/pool.d/vagrant.conf")
+  end
+
   def test_if_drush_exists
     assert File.exists? "/usr/bin/drush"
   end
