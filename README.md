@@ -69,7 +69,7 @@ Edit the config file to represent your apps. You can add as many as you want (as
 
  * _mysql_port_: enables port forwarding to the mysql port, to the port specified
  * _documentroot_suffix_: sets documentroot suffix, for when your application is in a subdirectory of the shared folder.
- * _php_memory_limit_: sets memory limit for php.
+ * _php_memory_limit_: sets memory limit for php. (please make note: shared accounts in production are limited to 192MB)
  * _php_xdebug_: enables [xdebug](http://xdebug.org/) support for php
  * _nfs_: enables [NFS](http://en.wikipedia.org/wiki/Network_File_System) support. This allows faster file sharing than the basic file sharing. NFS is not supported on Windows hosts. **Make sure your app_directory has a trailing slash, or NFS mount will fail!**
  * _ip_: sets custom IP.
