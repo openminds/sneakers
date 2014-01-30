@@ -53,12 +53,6 @@ template '/etc/php5/fpm/pool.d/vagrant.conf' do
   notifies :restart, 'service[php5-fpm]'
 end
 
-template '/etc/php5/mods-available/apc.ini' do
-  source 'apc.ini.erb'
-  mode '0644'
-  notifies :restart, 'service[php5-fpm]'
-end
-
 template '/etc/apache2/sites-available/default' do
   source 'php_vhost.conf.erb'
   variables(
