@@ -27,13 +27,13 @@ repositories.each do |repository, value|
   end
 end
 
-file '/etc/apt/sources.list.d/dotdeb-php54.list' do
+file '/etc/apt/sources.list.d/dotdeb-php55.list' do
   owner 'root'
   group 'root'
   mode '0644'
-  content 'deb http://packages.dotdeb.org squeeze-php54 all'
+  content 'deb http://packages.dotdeb.org wheezy-php55 all'
   notifies :run, "execute[apt-key dotdeb]", :immediately
-  only_if { node[:php][:version] == 'php54' }
+  only_if { node[:php][:version] == 'php55' }
 end
 
 repository_keys.each do |repository, command|
