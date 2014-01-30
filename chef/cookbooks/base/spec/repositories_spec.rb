@@ -1,10 +1,12 @@
 require 'spec_helper'
 
 describe 'base::default' do
-  let(:chef_run) {
-    chef_run = ChefSpec::ChefRunner.new(platform:'debian', version:'6.0.5')
-    chef_run.converge 'base::default'
-  }
+  [ "6.0.5" "7.3" ].each do |debian_version|
+    let(:chef_run) {
+      chef_run = ChefSpec::ChefRunner.new(platform:'debian', version:"#{debian_version}")
+      chef_run.converge 'base::default'
+    }
+  end
 
   it 'creates empty main sources.list file' do
     file = chef_run.file '/etc/apt/sources.list'
