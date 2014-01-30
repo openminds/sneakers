@@ -26,8 +26,9 @@ These are the servers we can currently mimick:
  * Cloud hosting PHP 5.4
  * Cloud hosting PHP 5.5
  * Cloud hosting Ruby 1.9.3
- * Shared hosting PHP 5.3 (shared-017)
- * Shared hosting PHP 5.4 (shared-018)
+ * Shared hosting PHP 5.3 (shared-017, shared-019)
+ * Shared hosting PHP 5.4 (shared-018, shared-020)
+ * Shared hosting PHP 5.5 (shared-021)
  * Shared hosting Ruby 1.9.3 (pro-007, pro-008)
 
 soon(-ish): shared varnish support
