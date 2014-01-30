@@ -55,7 +55,7 @@ describe 'base::default' do
     file = chef_run.file '/etc/apt/sources.list.d/mariadb.list'
     file.mode.should eq '0644'
     file.should be_owned_by 'root', 'root'
-    file.content.should eq 'deb http://mirror2.hs-esslingen.de/mariadb/repo/5.5/debian squeeze main'
+    file.content.should eq "deb http://mirror2.hs-esslingen.de/mariadb/repo/5.5/debian #{chef_run.node['lsb']['codename']} main"
     file.should notify 'execute[apt-key mariadb]', :run, :immediately
   end
 
