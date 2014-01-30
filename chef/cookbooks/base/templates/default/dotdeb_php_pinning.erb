@@ -4,6 +4,14 @@ Pin-Priority: 100
 
 <%
 case node[:php][:version]
+when "php55"
+%>
+
+Package: php5-cgi php5-cli php5-common php5-fpm php5-curl php5-dev php5-gd php5-imagick php5-imap php5-mcrypt php5-memcache php5-memcached php5-mysql php5-xmlrpc libapache2-mod-php5 php5-apc php5-http php5-imagick php5-redis php5-geoip php5-intl php5-ffmpeg php5-sybase php5-xcache php5-memcached libhashkit2 libmemcached-tools libmemcachedutil2 libmemcached5 php5-pgsql php5-sqlite php5-tidy php5-xsl php-pear
+Pin: origin packages.dotdeb.org
+Pin-Priority: 600
+
+<%
 when "php54"
 %>
 
