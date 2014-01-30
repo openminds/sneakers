@@ -4,7 +4,7 @@ class TestBase < MiniTest::Chef::TestCase
   end
 
     def test_that_the_security_repository_is_added
-    assert File.exists?("/etc/apt/sources.list.d/squeeze_security.list")
+    assert File.exists?("/etc/apt/sources.list.d/debian_security.list")
   end
 
   def test_that_the_mime_types_file_is_added
