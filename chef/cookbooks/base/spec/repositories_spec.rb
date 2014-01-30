@@ -20,8 +20,8 @@ describe 'base::default' do
     file.content.should eq "deb http://mirror.openminds.be/debian #{chef_run.node['lsb']['codename']} main contrib non-free"
   end
 
-  it 'creates /etc/apt/sources.list.d/squeeze_security.list' do
-    file = chef_run.file '/etc/apt/sources.list.d/squeeze_security.list'
+  it 'creates /etc/apt/sources.list.d/debian_security.list' do
+    file = chef_run.file '/etc/apt/sources.list.d/debian_security.list'
     file.mode.should eq '0644'
     file.should be_owned_by 'root', 'root'
     file.content.should eq 'deb http://security.debian.org squeeze/updates main contrib non-free'
