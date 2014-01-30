@@ -39,7 +39,7 @@ describe 'base::default' do
     file = chef_run.file '/etc/apt/sources.list.d/nginx.list'
     file.mode.should eq '0644'
     file.should be_owned_by 'root', 'root'
-    file.content.should eq 'deb http://nginx.org/packages/debian squeeze nginx'
+    file.content.should eq "deb http://nginx.org/packages/debian #{chef_run.node['lsb']['codename']} nginx"
     file.should notify 'execute[apt-key nginx]', :run, :immediately
   end
 
