@@ -47,7 +47,7 @@ describe 'base::default' do
     file = chef_run.file '/etc/apt/sources.list.d/dotdeb.list'
     file.mode.should eq '0644'
     file.should be_owned_by 'root', 'root'
-    file.content.should eq "deb http://packages.dotdeb.org squeeze all"
+    file.content.should eq "deb http://packages.dotdeb.org #{chef_run.node['lsb']['codename']} all"
     file.should notify 'execute[apt-key dotdeb]', :run, :immediately
   end
 
