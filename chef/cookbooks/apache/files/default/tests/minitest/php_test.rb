@@ -10,7 +10,7 @@ class TestPhp < MiniTest::Chef::TestCase
   end
 
   def test_that_the_packages_are_installed
-    %w[php5-cli php5-common php5-fpm php5-curl php5-dev php5-gd php5-imagick php5-imap php5-mcrypt php5-mysql php5-xmlrpc php-pear php5-intl php5-apc].each do |pkg|
+    %w[php5-cli php5-common php5-fpm php5-curl php5-dev php5-gd php5-imagick php5-imap php5-mcrypt php5-mysql php5-xmlrpc php-pear].each do |pkg|
       assert system("dpkg -l | grep #{pkg}")
     end
   end
