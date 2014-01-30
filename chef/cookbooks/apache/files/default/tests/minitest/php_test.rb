@@ -29,6 +29,8 @@ class TestPhp < MiniTest::Chef::TestCase
       assert system('php -v | grep 5.3')
     when "php54"
       assert system('php -v | grep 5.4')
+    when "php55"
+      assert system('php -v | grep 5.5')
     end
   end
 
