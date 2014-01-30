@@ -12,6 +12,14 @@ directory '/etc/php5/mods-available' do
   action :create
 end
 
+directory '/etc/php5/conf.d' do
+  owner 'root'
+  group 'root'
+  mode  '0755'
+  recursive true
+  action :create
+end
+
 file '/etc/php5/conf.d/suhosin.ini' do
   action :delete
 end
