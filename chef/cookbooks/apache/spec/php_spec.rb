@@ -65,11 +65,6 @@ describe 'apache::php' do
     file.should notify 'service[php5-fpm]', :restart
   end
 
-  it 'creates /etc/php5/mods-available/apc.ini' do
-    file = chef_run.template '/etc/php5/mods-available/apc.ini'
-    file.should notify 'service[php5-fpm]', :restart
-  end
-
   it "creates /etc/apache2/sites-available/default" do
     file = chef_run.template "/etc/apache2/sites-available/default"
     file.should notify 'service[apache2]', :restart
