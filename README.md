@@ -24,6 +24,7 @@ These are the servers we can currently mimick:
 
  * Cloud hosting PHP 5.3
  * Cloud hosting PHP 5.4
+ * Cloud hosting PHP 5.5
  * Cloud hosting Ruby 1.9.3
  * Shared hosting PHP 5.3 (shared-017)
  * Shared hosting PHP 5.4 (shared-018)
