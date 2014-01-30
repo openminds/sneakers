@@ -59,18 +59,18 @@ describe 'base::default' do
     file.should notify 'execute[apt-key mariadb]', :run, :immediately
   end
 
-  context 'php54 installation' do
+  context 'php55 installation' do
     let(:chef_run) do
-      runner = ChefSpec::ChefRunner.new(platform:'debian', version:'6.0.5')
-      runner.node.set[:php][:version] = 'php54'
+      runner = ChefSpec::ChefRunner.new(platform:'debian', version:'7.3')
+      runner.node.set[:php][:version] = 'php55'
       runner.converge('base::default')
     end
 
-    it '/etc/apt/sources.list.d/dotdeb-php54.list' do
-      file = chef_run.file '/etc/apt/sources.list.d/dotdeb-php54.list'
+    it '/etc/apt/sources.list.d/dotdeb-php55.list' do
+      file = chef_run.file '/etc/apt/sources.list.d/dotdeb-php55.list'
       file.mode.should eq '0644'
       file.should be_owned_by 'root', 'root'
-      file.content.should eq "deb http://packages.dotdeb.org squeeze-php54 all"
+      file.content.should eq "deb http://packages.dotdeb.org #{chef_run.node['lsb']['codename']}-php55 all"
       file.should notify 'execute[apt-key dotdeb]', :run, :immediately
     end
   end
