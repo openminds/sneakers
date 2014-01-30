@@ -23,8 +23,13 @@ boxes_configuration.each do |box_config|
         vb.customize ["modifyvm", :id, "--memory", box['memory']]
       end
 
-      node.vm.box = "sneakers-6.0.7-#{box['type']}-20130911"
-      node.vm.box_url = "http://mirror.openminds.be/vagrant-boxes/sneakers-6.0.7-#{box['type']}-20130911.box"
+      if box['type'] == "php53"
+        node.vm.box = "sneakers-6.0.7-#{box['type']}-20130911"
+        node.vm.box_url = "http://mirror.openminds.be/vagrant-boxes/sneakers-6.0.7-#{box['type']}-20130911.box"
+      else
+        node.vm.box = "sneakers-7.3.0-#{box['type']}-20140129"
+        node.vm.box_url = "http://mirror.openminds.be/vagrant-boxes/sneakers-7.3.0-#{box['type']}-20140129.box"
+      end
       node.vm.synced_folder box['app_directory'], "/home/vagrant/apps/default", nfs: box['nfs']
 
       node.vm.provision :chef_solo do |chef|
