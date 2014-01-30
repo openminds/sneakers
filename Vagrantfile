@@ -55,7 +55,7 @@ boxes_configuration.each do |box_config|
         chef.add_recipe "extra::wkhtmltopdf" if box['wkhtmltopdf']
         chef.add_recipe "extra::memcached" if box['memcached']
         case box['type']
-        when /^php5[3|4]$/
+        when /^php5[3|4|5]$/
           chef.add_recipe "apache::php"
           if box['php_memory_limit']
             chef.json.merge!(:php => {:memory_limit => box['php_memory_limit'], :version => box['type'] })
