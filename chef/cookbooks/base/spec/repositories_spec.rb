@@ -27,14 +27,6 @@ describe 'base::default' do
     file.content.should eq "deb http://security.debian.org #{chef_run.node['lsb']['codename']}/updates main contrib non-free"
   end
 
-  it 'creates /etc/apt/sources.list.d/openminds_apache.list' do
-    file = chef_run.file '/etc/apt/sources.list.d/openminds_apache.list'
-    file.mode.should eq '0644'
-    file.should be_owned_by 'root', 'root'
-    file.content.should eq "deb http://debs.openminds.be #{chef_run.node['lsb']['codename']} apache2"
-    file.should notify 'execute[apt-key openminds_apache]', :run, :immediately
-  end
-
   it 'creates /etc/apt/sources.list.d/nginx.list' do
     file = chef_run.file '/etc/apt/sources.list.d/nginx.list'
     file.mode.should eq '0644'
