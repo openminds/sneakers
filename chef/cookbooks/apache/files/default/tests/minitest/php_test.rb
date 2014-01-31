@@ -7,19 +7,12 @@ class TestPhp < MiniTest::Chef::TestCase
   def test_that_the_config_files_are_added
     assert File.exists?("/etc/php5/cli/php.ini")
     assert File.exists?("/etc/php5/fpm/php.ini")
-    assert File.exists?("/etc/php5/mods-available/apc.ini")
-    # Check if APC symlink exists
-    assert !Dir['/etc/php5/conf.d/*'].select {|x| x =~ /\/([0-9]+-)?apc\.ini$/ }.empty?
   end
 
   def test_that_the_packages_are_installed
-    %w[php5-cli php5-common php5-fpm php5-curl php5-dev php5-gd php5-imagick php5-imap php5-mcrypt php5-mysql php5-xmlrpc php-pear php5-intl php5-apc].each do |pkg|
+    %w[php5-cli php5-common php5-fpm php5-curl php5-dev php5-gd php5-imagick php5-imap php5-mcrypt php5-mysql php5-xmlrpc php-pear].each do |pkg|
       assert system("dpkg -l | grep #{pkg}")
     end
-  end
-
-  def test_that_apc_is_enabled
-      assert system("php -i | grep 'apc.enabled => On'")
   end
 
   def test_that_timezone_is_europe_brussels
@@ -36,6 +29,8 @@ class TestPhp < MiniTest::Chef::TestCase
       assert system('php -v | grep 5.3')
     when "php54"
       assert system('php -v | grep 5.4')
+    when "php55"
+      assert system('php -v | grep 5.5')
     end
   end
 

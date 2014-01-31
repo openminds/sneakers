@@ -24,9 +24,11 @@ These are the servers we can currently mimick:
 
  * Cloud hosting PHP 5.3
  * Cloud hosting PHP 5.4
+ * Cloud hosting PHP 5.5
  * Cloud hosting Ruby 1.9.3
- * Shared hosting PHP 5.3 (shared-017)
- * Shared hosting PHP 5.4 (shared-018)
+ * Shared hosting PHP 5.3 (shared-017, shared-019)
+ * Shared hosting PHP 5.4 (shared-018, shared-020)
+ * Shared hosting PHP 5.5 (shared-021)
  * Shared hosting Ruby 1.9.3 (pro-007, pro-008)
 
 soon(-ish): shared varnish support
@@ -61,7 +63,7 @@ Edit the config file to represent your apps. You can add as many as you want (as
 
  * _myapp_: This will be the name of your VM (unique identifier), change it to whatever makes sense to you.
  * _app_directory_: The directory your app resides on the host machine (i.e. your laptop)
- * _type_: Type of app you will use, this can be php53, php54, ruby193, ..
+ * _type_: Type of app you will use, this can be php53, php54, php55, ruby193, ..
  * _http\_port_: The VM will forward port 80 to another port on your machine. pick a port that's unused on your local machine.
  * _memory_: How much memory your VM may use. Be carefull, the more memory your VM has, the less your host machine has.
 

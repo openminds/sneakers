@@ -19,7 +19,7 @@ describe 'apache::php' do
 
   %w[
     php5-cli php5-common php5-fpm php5-curl php5-dev php5-gd php5-imagick
-    php5-imap php5-mcrypt php5-mysql php5-xmlrpc php-pear php5-intl php5-apc
+    php5-imap php5-mcrypt php5-mysql php5-xmlrpc php-pear
   ].each do |pkg|
     it "installs #{pkg}" do
       chef_run.should install_package pkg
@@ -62,11 +62,6 @@ describe 'apache::php' do
 
   it "creates /etc/php5/fpm/pool.d/vagrant.conf" do
     file = chef_run.template "/etc/php5/fpm/pool.d/vagrant.conf"
-    file.should notify 'service[php5-fpm]', :restart
-  end
-
-  it 'creates /etc/php5/mods-available/apc.ini' do
-    file = chef_run.template '/etc/php5/mods-available/apc.ini'
     file.should notify 'service[php5-fpm]', :restart
   end
 

@@ -23,8 +23,13 @@ boxes_configuration.each do |box_config|
         vb.customize ["modifyvm", :id, "--memory", box['memory']]
       end
 
-      node.vm.box = "sneakers-6.0.7-#{box['type']}-20130911"
-      node.vm.box_url = "http://mirror.openminds.be/vagrant-boxes/sneakers-6.0.7-#{box['type']}-20130911.box"
+      if box['type'] == "php53"
+        node.vm.box = "sneakers-6.0.7-#{box['type']}-20130911"
+        node.vm.box_url = "http://mirror.openminds.be/vagrant-boxes/sneakers-6.0.7-#{box['type']}-20130911.box"
+      else
+        node.vm.box = "sneakers-7.3.0-#{box['type']}-20140129"
+        node.vm.box_url = "http://mirror.openminds.be/vagrant-boxes/sneakers-7.3.0-#{box['type']}-20140129.box"
+      end
       node.vm.synced_folder box['app_directory'], "/home/vagrant/apps/default", nfs: box['nfs']
 
       node.vm.provision :chef_solo do |chef|
@@ -50,7 +55,7 @@ boxes_configuration.each do |box_config|
         chef.add_recipe "extra::wkhtmltopdf" if box['wkhtmltopdf']
         chef.add_recipe "extra::memcached" if box['memcached']
         case box['type']
-        when /^php5[3|4]$/
+        when /^php5[3|4|5]$/
           chef.add_recipe "apache::php"
           if box['php_memory_limit']
             chef.json.merge!(:php => {:memory_limit => box['php_memory_limit'], :version => box['type'] })

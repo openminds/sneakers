@@ -12,6 +12,14 @@ directory '/etc/php5/mods-available' do
   action :create
 end
 
+directory '/etc/php5/conf.d' do
+  owner 'root'
+  group 'root'
+  mode  '0755'
+  recursive true
+  action :create
+end
+
 file '/etc/php5/conf.d/suhosin.ini' do
   action :delete
 end
@@ -42,12 +50,6 @@ end
 
 template '/etc/php5/fpm/pool.d/vagrant.conf' do
   source 'fpm-pool.conf.erb'
-  notifies :restart, 'service[php5-fpm]'
-end
-
-template '/etc/php5/mods-available/apc.ini' do
-  source 'apc.ini.erb'
-  mode '0644'
   notifies :restart, 'service[php5-fpm]'
 end
 
