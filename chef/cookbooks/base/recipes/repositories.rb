@@ -11,7 +11,6 @@ repositories = {
 }
 
 repository_keys = {
-  'openminds_apache' => 'wget -qO - http://debs.openminds.be/debs.openminds.key | apt-key add -',
   'nginx' => 'wget -qO - http://nginx.org/packages/keys/nginx_signing.key | apt-key add -',
   'dotdeb' => 'wget -qO - http://www.dotdeb.org/dotdeb.gpg | apt-key add -',
   'mariadb' => 'apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 1BB943DB'
