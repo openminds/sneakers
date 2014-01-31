@@ -4,7 +4,7 @@ end
 
 repositories = {
   "openminds_mirror" => "deb http://mirror.openminds.be/debian #{node[:lsb][:codename]} main contrib non-free",
-  "wheezy_security" => "deb http://security.debian.org #{node[:lsb][:codename]}/updates main contrib non-free",
+  "debian_security" => "deb http://security.debian.org #{node[:lsb][:codename]}/updates main contrib non-free",
   "nginx" => "deb http://nginx.org/packages/debian #{node[:lsb][:codename]} nginx",
   "dotdeb" => "deb http://packages.dotdeb.org #{node[:lsb][:codename]} all",
   "mariadb" => "deb http://mirror2.hs-esslingen.de/mariadb/repo/5.5/debian #{node[:lsb][:codename]} main"
