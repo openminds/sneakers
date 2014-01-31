@@ -53,7 +53,7 @@ describe 'base::default' do
 
   context 'php55 installation' do
     let(:chef_run) do
-      runner = ChefSpec::ChefRunner.new(platform:'debian', version:'7.3')
+      runner = ChefSpec::ChefRunner.new(platform:'debian', version:'7.1')
       runner.node.set[:php][:version] = 'php55'
       runner.converge('base::default')
     end
