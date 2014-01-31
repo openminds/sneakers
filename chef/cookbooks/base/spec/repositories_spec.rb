@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe 'base::default' do
-  [ "6.0.5" "7.3" ].each do |debian_version|
+  [ "6.0.5","7.1" ].each do |debian_version|
     let(:chef_run) {
       chef_run = ChefSpec::ChefRunner.new(platform:'debian', version:"#{debian_version}")
       chef_run.converge 'base::default'
