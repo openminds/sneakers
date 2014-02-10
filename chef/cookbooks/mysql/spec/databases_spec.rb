@@ -16,15 +16,15 @@ describe 'mysql::databases' do
   }
 
   it 'creates database' do
-    chef_run.should execute_command "mysql -e 'create database `#{chef_run.node[:base][:name]}`'"
+    chef_run.should execute_command "mysql -e 'create database #{chef_run.node[:base][:name]}'"
   end
 
   it 'creates database user' do
-    chef_run.should execute_command "mysql -e \"grant all on `#{chef_run.node[:base][:name]}`.* to '`#{chef_run.node[:base][:name]}`'@'%' identified by 'vagrant'\""
+    chef_run.should execute_command "mysql -e \"grant all on #{chef_run.node[:base][:name]}.* to '#{chef_run.node[:base][:name]}'@'%' identified by 'vagrant'\""
   end
 
   it 'creates database grants' do
-    chef_run.should execute_command "mysql -e \"grant create view on `#{chef_run.node[:base][:name]}`.* to '`#{chef_run.node[:base][:name]}`'@'%' identified by 'vagrant'; grant show view on `#{chef_run.node[:base][:name]}`.* to '`#{chef_run.node[:base][:name]}`'@'%' identified by 'vagrant'\""
+    chef_run.should execute_command "mysql -e \"grant create view on #{chef_run.node[:base][:name]}.* to '#{chef_run.node[:base][:name]}'@'%' identified by 'vagrant'; grant show view on #{chef_run.node[:base][:name]}.* to '#{chef_run.node[:base][:name]}'@'%' identified by 'vagrant'\""
   end
 
   it 'allows remote access for mysql root user' do
