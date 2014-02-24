@@ -11,7 +11,7 @@ boxes_configuration.each do |box_config|
   throw "The name of you app can not be longer than 16 characters (due to db name restrictions)." if name.length > 16
   throw "The name of your app can not use dashes (-). The name of your app was #{name}." if name.include? '-'
   box = box_config[1]
-  throw "http_port can not be #{box['http_port']}. Please change it." if [111, 45587, 22, 25, 3306, 22, 42].include? box['http_port']
+  throw "http_port can not be #{box['http_port']}. Please change it." if [111, 45587, 22, 25, 3306, 22, 42, 9000].include? box['http_port']
 
   Vagrant.configure("2") do |config|
     config.vm.define name do |node|
