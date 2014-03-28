@@ -1,9 +1,14 @@
 require 'yaml'
 
+current_vagrant_version = Gem::Version.new(Vagrant::VERSION)
+target_vagrant_version  = Gem::Version.new('1.5.1')
+
 puts "The version of vagrant you are using is not the same we used to test Sneakers,\n\
 this might cause unexpected behavior.\n\
-  - Your Vagrant version:      #{current_vagrant_version}\n\
-  - Suggested Vagrant version: #{target_vagrant_version}" if current_vagrant_version != target_vagrant_version
+  - Your Vagrant version:      #{current_vagrant_version.version}\n\
+  - Suggested Vagrant version: #{target_vagrant_version.version}" if current_vagrant_version != target_vagrant_version
+
+Process.exit
 
 begin
   boxes_configuration = YAML.load_file('config.yml')
