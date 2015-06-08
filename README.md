@@ -4,6 +4,10 @@
 
 [![Build Status](https://travis-ci.org/openminds/sneakers.png?branch=2.0)](https://travis-ci.org/openminds/sneakers)
 
+## WARNING
+
+This project is no longer maintained. We hope to open source most of our cookbooks later this year and present an alternative for Sneakers.
+
 ## Description
 
 Sneakers is a simple, fast way to mimic Openminds Shared and Cloud hosting environments. We do this using vagrant/virtualbox provisioned by Chef.
