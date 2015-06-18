@@ -4,3 +4,18 @@
 [submodule "chef/cookbooks/chef_handler"]
 	path = chef/cookbooks/chef_handler
 	url = git://github.com/opscode-cookbooks/chef_handler.git
+[submodule "chef/cookbooks/elasticsearch"]
+	path = chef/cookbooks/elasticsearch
+	url = git://github.com/elasticsearch/cookbook-elasticsearch.git
+[submodule "chef/cookbooks/java"]
+	path = chef/cookbooks/java
+	url = git://github.com/socrata/java.git
+[submodule "chef/cookbooks/aws"]
+	path = chef/cookbooks/aws
+	url = git://github.com/opscode-cookbooks/aws.git
+[submodule "chef/cookbooks/windows"]
+	path = chef/cookbooks/windows
+	url = git://github.com/opscode-cookbooks/windows.git
+[submodule "chef/cookbooks/ark"]
+	path = chef/cookbooks/ark
+	url = git://github.com/opscode-cookbooks/ark.git

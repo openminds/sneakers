@@ -81,6 +81,7 @@ Edit the config file to represent your apps. You can add as many as you want (as
  * _ip_: sets custom IP.
  * _wkhtmltopdf_: enables [wkhtmltopdf](https://code.google.com/p/wkhtmltopdf/) support
  * _memcached_: enables [memcached](http://memcached.org/) support
+ * _elasticsearch_: enables [elasticsearch](http://www.elasticsearch.org/) support
 
 Caveats:
  * each app will run in its own VM, so make sure that if you add multiple apps that they all have a different http_port set up.
